@@ -1,7 +1,9 @@
 const orm = rootRequire('src/models/Orm.js');
 
 const User = orm.define('user', {
-    email: {
+    name: {
+        type: orm.seq.STRING
+    },email: {
         type: orm.seq.STRING
     },
     password: {
@@ -11,7 +13,7 @@ const User = orm.define('user', {
     freezeTableName: true
 });
 
-User.sync().then(function () {
+User.sync({force: true}).then(function () {
     User.create({
         email: 'admin@gmail.com',
         password: 'admin'
