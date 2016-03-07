@@ -11,6 +11,11 @@ const User = orm.define('user', {
     freezeTableName: true
 });
 
-User.sync();
+User.sync().then(function () {
+    User.create({
+        email: 'admin@gmail.com',
+        password: 'admin'
+    });
+});
 
 module.exports = User;

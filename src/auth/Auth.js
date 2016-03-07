@@ -2,6 +2,14 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = rootRequire("src/models/User");
 
+passport.serializeUser(function(user, done) {
+    done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+    done(null, user);
+});
+
 var localStrategy = new LocalStrategy(
     function (username, password, done) {
         User.findOne({

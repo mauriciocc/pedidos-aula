@@ -11,6 +11,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var flash = require('connect-flash');
 
 var routes = require('./routes/index');
 
@@ -26,6 +27,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
+app.use(flash());
 app.use(require('node-sass-middleware')({
     src: path.join(__dirname, 'public'),
     dest: path.join(__dirname, 'public'),
@@ -40,7 +42,8 @@ app.use(auth.passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Authentication middleware
-app.use();
+var authMiddleware = rootRequire('routes/AuthMiddleware');
+app.use(authMiddleware);
 
 app.use('/', routes);
 
