@@ -78,3 +78,11 @@ node_modules
 
 public/stylesheets/*.css
 public/stylesheets/*.map
+
+.DS_Store
+.tmp
+.git
+node_modules
+.settings
+*.log
+dist/

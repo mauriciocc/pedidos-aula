@@ -39,7 +39,7 @@ app.use(expressSession({secret: 'change-this-to-something-secret-huehue-:)'}));
 app.use(auth.passport.initialize());
 app.use(auth.passport.session());
 
-app.use('/resources', express.static(path.join(__dirname, 'client', 'dist')));
+app.use('/resources', express.static(path.join(__dirname, 'dist')));
 
 // Authentication middleware
 var authMiddleware = rootRequire('routes/AuthMiddleware');
