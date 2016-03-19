@@ -2,7 +2,7 @@
 let UserFactory = function ($http) {
 
   let findAll = () => {
-    return $http.get('/api/users');
+    return $http.get('/api/users').then(response => response.data);
   };
 
   let save = (user) => {

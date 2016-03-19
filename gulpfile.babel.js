@@ -15,6 +15,7 @@ import webpackDevMiddelware from 'webpack-dev-middleware';
 import webpachHotMiddelware from 'webpack-hot-middleware';
 import colorsSupported      from 'supports-color';
 import historyApiFallback   from 'connect-history-api-fallback';
+import nodemon from 'gulp-nodemon';
 
 let root = 'client';
 
@@ -61,6 +62,12 @@ gulp.task('webpack', (cb) => {
 });
 
 gulp.task('serve', () => {
+
+  nodemon({
+    script: 'bin/www',
+    ext: 'js'
+  });
+
   const config = require('./webpack.dev.config');
   config.entry.app = [
     // this modules required to make HRM working
@@ -73,9 +80,10 @@ gulp.task('serve', () => {
   var compiler = webpack(config);
 
   serve({
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 3001,
     open: false,
-    server: {baseDir: root},
+    //server: {baseDir: root},
+    proxy: 'localhost:3000',
     middleware: [
       historyApiFallback(),
       webpackDevMiddelware(compiler, {
