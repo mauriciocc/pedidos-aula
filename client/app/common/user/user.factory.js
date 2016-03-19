@@ -1,15 +1,19 @@
-let UserFactory = function () {
-  const user = {};
+/*@ngInject*/
+let UserFactory = function ($http) {
 
-  let getUser = () => {
-    return user;
+  let findAll = () => {
+    return $http.get('/api/users');
   };
 
-  let isSignedIn = () => {
-    return user.isSignedIn; 
+  let save = (user) => {
+    return $http.post('/api/users', user);
   };
 
-  return { getUser, isSignedIn };
+  let remove = (userId) => {
+    return $http.delete('/api/users/' + userId);
+  };
+
+  return {findAll, save, remove};
 };
 
 export default UserFactory;
