@@ -3,7 +3,6 @@ class UserFormController {
 
   constructor(UserService) {
     this.UserService = UserService;
-    this.name = 'userForm';
     this.refresh();
   }
 

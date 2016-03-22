@@ -1,12 +1,12 @@
 <div layout="column" ng-cloak class="md-inline-form">
 
   <table>
-    <tr ng-repeat="user in vm.users track by user.id">
+    <tr ng-repeat="user in $ctrl.users track by user.id">
       <td>{{user.id}}</td>
       <td>{{user.name}}</td>
       <td>{{user.email}}</td>
       <td>
-        <md-button class="md-raised md-warn" ng-click="vm.remove(user.id)">Remover</md-button>
+        <md-button class="md-raised md-warn" ng-click="$ctrl.remove(user.id)">Remover</md-button>
       </td>
     </tr>
   </table>
@@ -17,23 +17,23 @@
         <div layout="row">
           <md-input-container class="md-block" flex>
             <label>Nome</label>
-            <input type="text" ng-model="vm.user.name" required>
+            <input type="text" ng-model="$ctrl.user.name" required>
           </md-input-container>
         </div>
         <div layout="row">
           <md-input-container class="md-block" flex>
             <label>E-mail</label>
-            <input type="email" ng-model="vm.user.email" required>
+            <input type="email" ng-model="$ctrl.user.email" required>
           </md-input-container>
         </div>
         <div layout="row">
           <md-input-container class="md-block" flex>
             <label>Senha</label>
-            <input type="password" ng-model="vm.user.password">
+            <input type="password" ng-model="$ctrl.user.password">
           </md-input-container>
         </div>
         <div layout="row">
-          <md-button class="md-raised md-primary" ng-click="vm.save()">Salvar</md-button>
+          <md-button class="md-raised md-primary" ng-click="$ctrl.save()">Salvar</md-button>
         </div>
       </form>
     </div>

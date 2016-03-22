@@ -10,13 +10,30 @@ module.exports = function (router) {
 
   router.post('/api/users', function (req, res) {
     User.create(req.body).then(function (user) {
-      return res.send(user);
+      res.send(user);
+    });
+  });
+
+  router.put('/api/users/:id', function (req, res) {
+    User.findById(req.params.id).then(function (user) {
+      if (user) {
+        user.update(req.body).then(function (user) {
+          res.send(user);
+        });
+      } else {
+        res.send(404);
+      }
     });
   });
 
   router.delete('/api/users/:id', function (req, res) {
-    User.destroy({where: {id: req.params.id}}).then(function() {
-      res.send(200);
+    User.findById(req.params.id).then(function (user) {
+      if (user) {
+        user.destroy();
+        res.send(200);
+      } else {
+        res.send(404);
+      }
     });
   });
 

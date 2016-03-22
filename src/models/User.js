@@ -7,9 +7,16 @@ const User = orm.define('user', {
     primaryKey: true
   },
   name: {
-    type: orm.seq.STRING
+    type: orm.seq.STRING,
+    validate: {
+      notEmpty: true
+    }
   }, email: {
-    type: orm.seq.STRING
+    type: orm.seq.STRING,
+    validate: {
+      notEmpty: true,
+      isEmail: true
+    }
   },
   password: {
     type: orm.seq.STRING

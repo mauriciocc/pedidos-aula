@@ -1,17 +1,20 @@
+import 'normalize.css';
+import 'angular-material/angular-material.scss';
+
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import ngMaterial from 'angular-material';
-import 'angular-material/angular-material.min.css';
 
-import Common from './common/common';
-import Components from './components/components';
 import AppComponent from './app.component';
-import 'normalize.css';
+import user from './user/user'
+import navbar from './navbar/navbar'
+import home from './home/home'
 
 angular.module('app', [
     uiRouter,
-    Common.name,
-    Components.name,
+    navbar.name,
+    home.name,
+    user.name,
     'ngMaterial'
   ])
   .config(($locationProvider) => {
