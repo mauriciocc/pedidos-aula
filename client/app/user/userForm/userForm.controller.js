@@ -1,8 +1,9 @@
 /*@ngInject*/
 class UserFormController {
 
-  constructor(UserService) {
+  constructor(UserService, $mdToast) {
     this.UserService = UserService;
+    this.$mdToast = $mdToast;
     this.refresh();
   }
 
@@ -11,7 +12,23 @@ class UserFormController {
   }
 
   save() {
-    this.UserService.save(this.user).then(() => this.refresh());
+    this.UserService.save(this.user).then(() => {
+      this.$mdToast.show(
+        this.$mdToast
+        .simple().textContent('Usuário salvo com sucesso!')
+        .position('top right')
+        .theme("success-toast")
+      );
+      this.refresh();
+    }, () => {
+      this.$mdToast.show(
+        this.$mdToast
+          .simple().textContent('Ocorreu um erro ao tentar salvar o usuário!' + arguments)
+          .position('top right')
+          .theme("danger-toast")
+      );
+      console.log(arguments);
+    });
   }
 
   remove(id) {

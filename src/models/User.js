@@ -8,18 +8,24 @@ const User = orm.define('user', {
   },
   name: {
     type: orm.seq.STRING,
+    allowNull: false,
     validate: {
       notEmpty: true
     }
   }, email: {
     type: orm.seq.STRING,
+    allowNull: false,
     validate: {
       notEmpty: true,
       isEmail: true
     }
   },
   password: {
-    type: orm.seq.STRING
+    type: orm.seq.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   }
 }, {
   freezeTableName: true
@@ -27,6 +33,7 @@ const User = orm.define('user', {
 
 User.sync({force: true}).then(function () {
   User.create({
+    name: 'Administrador',
     email: 'admin@gmail.com',
     password: 'admin'
   });
