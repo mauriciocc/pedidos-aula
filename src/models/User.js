@@ -28,14 +28,20 @@ const User = orm.define('user', {
     }
   }
 }, {
-  freezeTableName: true
+  underscored: true,
+  freezeTableName: true,
+  tableName: 'users'
 });
 
-User.sync({force: true}).then(function () {
-  User.create({
-    name: 'Administrador',
-    email: 'admin@gmail.com',
-    password: 'admin'
+User.sync().then(function () {
+  User.findOne({email: 'admin@gmail.com'}).then(function(user) {
+    if(!user) {
+      User.create({
+        name: 'Administrador',
+        email: 'admin@gmail.com',
+        password: 'admin'
+      });
+    }
   });
 });
 

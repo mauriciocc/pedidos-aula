@@ -1,10 +1,10 @@
 const Sequelize = require('sequelize');
-const dbConfig = rootRequire("config").db;
+const dbConfig = rootRequire("config/config").production;
 
 const orm = new Sequelize(dbConfig.database, dbConfig.user, dbConfig.password, {
     host: dbConfig.host,
     port: dbConfig.port,
-    dialect: 'postgres',
+    dialect: dbConfig.dialect,
     pool: {
         max: dbConfig.poolSize,
         min: dbConfig.poolSize,
