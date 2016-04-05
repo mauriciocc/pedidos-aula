@@ -1,19 +1,25 @@
-import angular from 'angular';
-import UserFactory from './service/user.factory';
-import uiRouter from 'angular-ui-router';
-import userFormComponent from './userForm/userForm.component'
+import angular from "angular";
+import UserService from "./service/UserService.js";
+import uiRouter from "angular-ui-router";
+import userList from "./crud/list.component";
+import userForm from "./crud/form.component.js";
 
 let userModule = angular.module('user', [uiRouter])
   .config(function ($stateProvider) {
     "ngInject";
     $stateProvider
-      .state('userForm', {
-        url: '/user/form',
+      .state('users', {
+        url: '/users',
+        template: '<user-list></user-list>'
+      })
+      .state('usersForm', {
+        url: '/users/form',
         template: '<user-form></user-form>'
       });
   })
-  .factory('UserService', UserFactory)
-  .component('userForm', userFormComponent);
+  .factory('UserService', UserService)
+  .component('userList', userList)
+  .component('userForm', userForm);
 
 
 export default userModule;

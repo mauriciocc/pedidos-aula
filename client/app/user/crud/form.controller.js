@@ -1,9 +1,10 @@
 /*@ngInject*/
 class UserFormController {
 
-  constructor(UserService, $mdToast) {
+  constructor(UserService, $mdToast, $mdDialog) {
     this.UserService = UserService;
     this.$mdToast = $mdToast;
+    this.$mdDialog = $mdDialog;
     this.refresh();
   }
 
@@ -15,9 +16,9 @@ class UserFormController {
     this.UserService.save(this.user).then(() => {
       this.$mdToast.show(
         this.$mdToast
-        .simple().textContent('Usuário salvo com sucesso!')
-        .position('top right')
-        .theme("success-toast")
+          .simple().textContent('Usuário salvo com sucesso!')
+          .position('top right')
+          .theme("success-toast")
       );
       this.refresh();
     }, () => {
@@ -27,12 +28,20 @@ class UserFormController {
           .position('top right')
           .theme("danger-toast")
       );
-      console.log(arguments);
     });
   }
 
   remove(id) {
     this.UserService.remove(id).then(() => this.refresh());
+  }
+
+  edit(id) {
+    this.$mdDialog.show(
+      this.$mdDialog.alert()
+        .title('This is an alert title')
+        .textContent('You can specify some description text in here.')
+        .ok('Salvar')
+    );
   }
 
 }

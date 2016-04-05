@@ -1,33 +1,5 @@
 <div layout="column" ng-cloak class="md-inline-form">
 
-
-
-  <!-- exact table from live demo -->
-  <md-table-container>
-    <table md-table>
-      <thead md-head>
-      <tr md-row>
-        <th md-column>ID</th>
-        <th md-column>Nome</th>
-        <th md-column>E-mail</th>
-        <th md-column>Ações</th>
-      </tr>
-      </thead>
-      <tbody md-body>
-      <tr md-row ng-repeat="user in $ctrl.users track by user.id">
-        <td md-cell>{{user.id}}</td>
-        <td md-cell>{{user.name}}</td>
-        <td md-cell>{{user.email}}</td>
-        <td md-cell>
-          <md-button class="md-icon-button" ng-click="$ctrl.remove(user.id)">
-            <md-icon md-font-icon="fa-times" class="fa md-raised md-warn"></md-icon>
-          </md-button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </md-table-container>
-
   <md-content layout-padding>
     <div>
       <form name="userForm">
