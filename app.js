@@ -29,7 +29,11 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(flash());
 
-app.use(expressSession({secret: 'change-this-to-something-secret-huehue-:)'}));
+app.use(expressSession({
+  secret: 'change-this-to-something-secret-huehue-:)',
+  resave: false,
+  saveUninitialized: true
+}));
 app.use(auth.passport.initialize());
 app.use(auth.passport.session());
 

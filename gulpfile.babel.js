@@ -64,8 +64,7 @@ gulp.task('webpack', (cb) => {
 gulp.task('serve', () => {
 
   nodemon({
-    script: 'bin/www',
-    ext: 'js'
+    script: 'bin/www'
   });
 
   const config = require('./webpack.dev.config');

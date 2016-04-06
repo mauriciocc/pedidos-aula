@@ -9,7 +9,6 @@ class controller {
     this.UserService = UserService;
     this.$mdToast = $mdToast;
     this.$state = $state;
-    console.log($state);
     this.refresh();
   }
 
@@ -21,18 +20,12 @@ class controller {
     this.UserService.remove(id).then(() => this.refresh());
   }
 
-  nadegas() {
-    console.log('nadegas', this.$state);
-    this.$state.go('usersForm');
-  }
-
   newUser() {
-    console.log('nadegas', this.$state);
-    this.$state.go('usersForm');
+    this.$state.go('users-form-new');
   }
 
   edit(id) {
-    console.log('uvhjeowiuhvweoiuwe');
+    this.$state.go('users-form-edit', {id: id});
   }
 
 }

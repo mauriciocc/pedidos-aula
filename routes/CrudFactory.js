@@ -6,6 +6,12 @@ module.exports = function (router, uri, DAO) {
     })
   });
 
+  router.get(uri + '/:id', function (req, res) {
+    DAO.findById(req.params.id).then(function (entities) {
+      res.status(200).json(entities);
+    })
+  });
+
   router.post(uri, function (req, res) {
     DAO.create(req.body).then(function (entity) {
       res.status(200).json(entity);

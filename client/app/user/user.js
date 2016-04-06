@@ -12,12 +12,16 @@ let userModule = angular.module('user', [uiRouter])
         url: '/users',
         template: '<user-list></user-list>'
       })
-      .state('usersForm', {
+      .state('users-form-new', {
         url: '/users/form',
+        template: '<user-form></user-form>'
+      })
+      .state('users-form-edit', {
+        url: '/users/form/:id',
         template: '<user-form></user-form>'
       });
   })
-  .factory('UserService', UserService)
+  .service('UserService', UserService)
   .component('userList', userList)
   .component('userForm', userForm);
 

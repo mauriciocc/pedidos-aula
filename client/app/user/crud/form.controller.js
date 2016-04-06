@@ -1,11 +1,16 @@
 /*@ngInject*/
 class UserFormController {
 
-  constructor(UserService, $mdToast, $mdDialog) {
+  constructor(UserService, $mdToast, $mdDialog, $stateParams) {
     this.UserService = UserService;
     this.$mdToast = $mdToast;
     this.$mdDialog = $mdDialog;
-    this.refresh();
+    this.$stateParams = $stateParams;
+    if ($stateParams.id) {
+      UserService.findOne($stateParams.id).then((user) => this.user = user);
+    } else {
+      this.user = {};
+    }
   }
 
   refresh() {
