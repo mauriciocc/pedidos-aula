@@ -32,6 +32,6 @@ const User = orm.define('user', {
   underscored: true
 });
 
-User.belongsTo(Role);
+User.belongsTo(Role, {as: 'role'});
 
 module.exports = User;

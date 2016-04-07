@@ -12,8 +12,6 @@ module.exports = function () {
           name: 'Administrador',
           email: 'admin@gmail.com',
           password: 'admin',
-          role: instance,
-          Role: instance,
           roleId: instance.id
         },
         where: {
