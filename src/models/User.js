@@ -1,4 +1,5 @@
 const orm = rootRequire('src/models/Orm.js');
+const Role = require('./Role');
 
 const User = orm.define('user', {
   id: {
@@ -28,21 +29,9 @@ const User = orm.define('user', {
     }
   }
 }, {
-  underscored: true,
-  freezeTableName: true,
-  tableName: 'users'
+  underscored: true
 });
 
-User.sync().then(function () {
-  User.findOne({email: 'admin@gmail.com'}).then(function(user) {
-    if(!user) {
-      User.create({
-        name: 'Administrador',
-        email: 'admin@gmail.com',
-        password: 'admin'
-      });
-    }
-  });
-});
+User.belongsTo(Role);
 
 module.exports = User;

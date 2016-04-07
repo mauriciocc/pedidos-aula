@@ -1,20 +1,16 @@
 const orm = rootRequire('src/models/Orm.js');
 
 const Role = orm.define('role', {
-    name: {
-        type: orm.seq.STRING
-    }
+  id: {
+    type: orm.seq.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  name: {
+    type: orm.seq.STRING
+  }
 }, {
-    freezeTableName: true
-});
-
-Role.sync({force: true}).then(function () {
-    Role.create({
-        name: "ADMIN"
-    });
-    Role.create({
-        name: "USER"
-    });
+  underscored: true
 });
 
 module.exports = Role;

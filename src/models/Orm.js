@@ -1,8 +1,6 @@
 const Sequelize = require('sequelize');
 const dbConfig = rootRequire("config/config").production;
 
-console.log(dbConfig);
-
 const orm = new Sequelize(dbConfig.database || 'pedidos', dbConfig.username || 'postgres', dbConfig.password || 'postgres', {
     host: dbConfig.host || 'localhost',
     port: dbConfig.port || 5432,
@@ -16,6 +14,7 @@ const orm = new Sequelize(dbConfig.database || 'pedidos', dbConfig.username || '
 
 module.exports = {
     seq: Sequelize,
+    instance: orm,
     define: function (name, opts) {
         return orm.define(name,opts);
     }

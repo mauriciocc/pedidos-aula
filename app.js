@@ -2,6 +2,9 @@ global.rootRequire = function (name) {
     return require(__dirname + '/' + name);
 };
 
+// Initialize database
+require('./src/InitializeDatabase')();
+
 const auth = rootRequire("src/auth/Auth");
 
 var express = require('express');
@@ -14,6 +17,8 @@ var bodyParser = require('body-parser');
 var flash = require('connect-flash');
 
 var routes = require('./routes/index');
+
+
 
 var app = express();
 
