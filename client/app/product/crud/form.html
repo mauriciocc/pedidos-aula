@@ -22,6 +22,16 @@
           </md-input-container>
         </div>
         <div layout="row">
+        <md-input-container class="md-block" flex>
+          <label>Categoria</label>
+          <md-select ng-model="$ctrl.product.categoryId">
+            <md-option ng-repeat="category in $ctrl.categorys" value="{{category.id}}">
+              {{category.name}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+        </div>
+        <div layout="row">
           <md-button class="md-raised md-primary" ng-click="$ctrl.save()">Salvar</md-button>
         </div>
       </form>

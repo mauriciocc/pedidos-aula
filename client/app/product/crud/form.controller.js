@@ -1,11 +1,13 @@
 /*@ngInject*/
 class ProductFormController {
 
-  constructor(ProductService, $mdToast, $mdDialog, $stateParams) {
+  constructor(ProductService, CategoryService, $mdToast, $mdDialog, $stateParams) {
     this.ProductService = ProductService;
+    this.CategoryService = CategoryService;
     this.$mdToast = $mdToast;
     this.$mdDialog = $mdDialog;
     this.$stateParams = $stateParams;
+    this.loadCategorys();
     if ($stateParams.id) {
       ProductService.findOne($stateParams.id).then((product) => this.product = product);
     } else {
@@ -15,6 +17,10 @@ class ProductFormController {
 
   refresh() {
     this.ProductService.findAll().then((products) => this.products = products);
+  }
+
+  loadCategorys() {
+    this.CategoryService.findAll().then((categorys) => this.categorys = categorys);
   }
 
   save() {

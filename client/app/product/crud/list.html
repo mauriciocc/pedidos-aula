@@ -12,6 +12,7 @@
         <th md-column>ID</th>
         <th md-column>Nome</th>
         <th md-column>Preço</th>
+        <th md-column>Categoria</th>
         <th md-column>Ações</th>
       </tr>
       </thead>
@@ -20,6 +21,7 @@
         <td md-cell>{{product.id}}</td>
         <td md-cell>{{product.name}}</td>
         <td md-cell>{{product.value}}</td>
+        <td md-cell>{{product.category.name}}</td>
         <td md-cell>
           <md-button class="md-icon-button" ng-click="$ctrl.remove(product.id)">
             <md-icon md-font-icon="fa-times" class="fa md-raised md-warn"></md-icon>

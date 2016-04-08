@@ -1,5 +1,6 @@
 import angular from "angular";
 import ProductService from "./service/ProductService.js";
+import CategoryService from "../category/service/CategoryService.js";
 import uiRouter from "angular-ui-router";
 import productList from "./crud/list.component";
 import productForm from "./crud/form.component.js";
@@ -22,6 +23,7 @@ let productModule = angular.module('product', [uiRouter])
       });
   })
   .service('ProductService', ProductService)
+  .service('CategoryService', CategoryService)
   .component('productList', productList)
   .component('productForm', productForm);
 
