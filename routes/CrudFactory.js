@@ -1,13 +1,15 @@
-module.exports = function (router, uri, DAO) {
+module.exports = function (router, uri, DAO, opts) {
+
+  opts = opts || {};
 
   router.get(uri, function (req, res) {
-    DAO.findAll().then(function (entities) {
+    DAO.findAll(opts).then(function (entities) {
       res.status(200).json(entities);
     })
   });
 
   router.get(uri + '/:id', function (req, res) {
-    DAO.findById(req.params.id).then(function (entities) {
+    DAO.findById(req.params.id, opts).then(function (entities) {
       res.status(200).json(entities);
     })
   });
@@ -21,7 +23,7 @@ module.exports = function (router, uri, DAO) {
   });
 
   router.put(uri + '/:id', function (req, res) {
-    DAO.findById(req.params.id).then(function (entity) {
+    DAO.findById(req.params.id, opts).then(function (entity) {
       if (entity) {
         entity.update(req.body).then(function (entity) {
           res.status(200).json(entity);

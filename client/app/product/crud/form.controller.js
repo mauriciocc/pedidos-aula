@@ -1,22 +1,19 @@
 /*@ngInject*/
 class ProductFormController {
 
-  constructor(ProductService, CategoryService, $mdToast, $mdDialog, $stateParams) {
+  constructor(ProductService, CategoryService, $mdToast, $mdDialog, $state, $stateParams) {
     this.ProductService = ProductService;
     this.CategoryService = CategoryService;
     this.$mdToast = $mdToast;
     this.$mdDialog = $mdDialog;
     this.$stateParams = $stateParams;
+    this.$state = $state;
     this.loadCategorys();
     if ($stateParams.id) {
       ProductService.findOne($stateParams.id).then((product) => this.product = product);
     } else {
       this.product = {};
     }
-  }
-
-  refresh() {
-    this.ProductService.findAll().then((products) => this.products = products);
   }
 
   loadCategorys() {
@@ -31,7 +28,7 @@ class ProductFormController {
           .position('top right')
           .theme("success-toast")
       );
-      this.refresh();
+      this.$state.go('products');
     }, () => {
       this.$mdToast.show(
         this.$mdToast
@@ -40,19 +37,6 @@ class ProductFormController {
           .theme("danger-toast")
       );
     });
-  }
-
-  remove(id) {
-    this.ProductService.remove(id).then(() => this.refresh());
-  }
-
-  edit(id) {
-    this.$mdDialog.show(
-      this.$mdDialog.alert()
-        .title('This is an alert title')
-        .textContent('You can specify some description text in here.')
-        .ok('Salvar')
-    );
   }
 
 }
