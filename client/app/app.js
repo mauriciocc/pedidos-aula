@@ -2,6 +2,9 @@ import 'normalize.css';
 import 'angular-material/angular-material.scss';
 import 'angular-material-data-table/dist/md-data-table.min.css';
 import 'font-awesome/scss/font-awesome.scss';
+import "material-design-lite/material.min.js";
+import "material-design-lite/material.min.css";
+  
 
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
