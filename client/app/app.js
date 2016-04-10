@@ -1,4 +1,4 @@
-import "normalize.css";
+import "normalize.css/normalize.css";
 import "angular-material/angular-material.scss";
 import "angular-material-data-table/dist/md-data-table.min.css";
 import "font-awesome/scss/font-awesome.scss";
@@ -6,6 +6,7 @@ import "material-design-lite/material.min.js";
 import "material-design-lite/material.min.css";
   
 import angular from "angular";
+import angularCookies from "angular-cookies";
 import uiRouter from "angular-ui-router";
 import ngMaterial from "angular-material";
 import ngDataTable from "angular-material-data-table";
@@ -21,6 +22,7 @@ angular.module('app', [
     uiRouter,
     ngMaterial,
     ngDataTable,
+    angularCookies,
     navbar.name,
     home.name,
     user.name,
@@ -45,14 +47,8 @@ angular.module('app', [
     $urlRouterProvider.otherwise("/login");
   })
   .component('app', AppComponent)
-  .run(function ($rootScope, $state, AuthService, $http) {
+  .run(function ($rootScope, $state, AuthService) {
     "ngInject";
-
-    if (AuthService.isAuthenticated()) {
-      $http.defaults.headers.common['Authorization'] = 'Basic ' + AuthService.getBasicAuth();
-    }
-
-
     $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
       if (!AuthService.isAuthenticated() && toState.name !== 'login') {
         $state.transitionTo("login");

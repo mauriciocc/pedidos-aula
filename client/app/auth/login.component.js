@@ -10,7 +10,8 @@ class controller {
     this.$state = $state;
     this.credentials = {
       email: 'admin@gmail.com',
-      password: 'admin'
+      password: 'admin',
+      rememberMe: true
     }
   }
 
