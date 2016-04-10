@@ -13,6 +13,8 @@ import ngDataTable from 'angular-material-data-table';
 
 import AppComponent from './app.component';
 import user from './user/user'
+import category from './category/category'
+import product from './product/product'
 import navbar from './navbar/navbar'
 import home from './home/home'
 
@@ -21,6 +23,8 @@ angular.module('app', [
     navbar.name,
     home.name,
     user.name,
+    category.name,
+    product.name,
     ngMaterial,
     ngDataTable
   ])
