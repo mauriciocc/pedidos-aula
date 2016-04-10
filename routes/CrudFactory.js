@@ -1,20 +1,20 @@
-module.exports = function (router, uri, DAO, opts) {
+module.exports = function (router, Auth, uri, DAO, opts) {
 
   opts = opts || {};
 
-  router.get(uri, function (req, res) {
+  router.get(uri, Auth, function (req, res) {
     DAO.findAll(opts).then(function (entities) {
       res.status(200).json(entities);
     })
   });
 
-  router.get(uri + '/:id', function (req, res) {
+  router.get(uri + '/:id', Auth, function (req, res) {
     DAO.findById(req.params.id, opts).then(function (entities) {
       res.status(200).json(entities);
     })
   });
 
-  router.post(uri, function (req, res) {
+  router.post(uri, Auth, function (req, res) {
     DAO.create(req.body).then(function (entity) {
       res.status(200).json(entity);
     }, function (ex) {
@@ -22,7 +22,7 @@ module.exports = function (router, uri, DAO, opts) {
     });
   });
 
-  router.put(uri + '/:id', function (req, res) {
+  router.put(uri + '/:id', Auth, function (req, res) {
     DAO.findById(req.params.id, opts).then(function (entity) {
       if (entity) {
         entity.update(req.body).then(function (entity) {
@@ -36,7 +36,7 @@ module.exports = function (router, uri, DAO, opts) {
     });
   });
 
-  router.delete(uri + '/:id', function (req, res) {
+  router.delete(uri + '/:id', Auth, function (req, res) {
     DAO.findById(req.params.id)
       .then(function (user) {
         if (user) {

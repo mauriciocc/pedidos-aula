@@ -1,14 +1,9 @@
 var express = require('express');
+var Auth = require('./Auth');
 var router = express.Router();
-require('./SignInCtrl')(router);
-require('./UserCtrl')(router);
-require('./CategoryCtrl')(router);
-require('./ProductCtrl')(router);
-
-/* GET home page. */
-router.get('/home', function (req, res, next) {
-    res.render('index', {title: 'Express'});
-});
-
+require('./SignInCtrl')(router, Auth);
+require('./UserCtrl')(router, Auth);
+require('./CategoryCtrl')(router, Auth);
+require('./ProductCtrl')(router, Auth);
 
 module.exports = router;
