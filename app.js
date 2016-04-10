@@ -5,10 +5,7 @@ global.rootRequire = function (name) {
 // Initialize database
 require('./src/InitializeDatabase')();
 
-const auth = rootRequire("src/auth/Auth");
-
 var express = require('express');
-var expressSession = require('express-session');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -33,14 +30,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(flash());
-
-app.use(expressSession({
-  secret: 'change-this-to-something-secret-huehue-:)',
-  resave: false,
-  saveUninitialized: true
-}));
-app.use(auth.passport.initialize());
-app.use(auth.passport.session());
 
 app.use('/resources', express.static(path.join(__dirname, 'dist')));
 

@@ -1,6 +1,6 @@
 var User = rootRequire('src/models/User');
 var CrudFactory = require('./CrudFactory');
 
-module.exports = function (router) {
-  return CrudFactory(router, '/api/users', User);
+module.exports = function (router, Auth) {
+  return CrudFactory(router, Auth, '/api/users', User);
 };

@@ -1,16 +1,9 @@
 var passport = require('passport');
 
-module.exports = function (router) {
+module.exports = function (router, Auth) {
 
-    router.get('/sign-in', function(req, res, next) {
-        res.render('sign-in', { title: 'Express' });
-    });
+  router.get('/api/sign-in', Auth, function (req, res) {
+    res.json(req.user);
+  });
 
-    router.post('/sign-in',
-        passport.authenticate('local', {
-            successRedirect: '/home',
-            failureRedirect: '/sign-in',
-            failureFlash: true
-        })
-    );
 };
