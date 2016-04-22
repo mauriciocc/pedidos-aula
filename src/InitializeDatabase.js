@@ -3,6 +3,9 @@ const Role = require('./models/Role');
 const User = require('./models/User');
 const Category = require('./models/Category');
 const Product = require('./models/Product');
+const Customer = require('./models/Customer');
+const Address = require('./models/Address');
+const City = require('./models/City');
 
 module.exports = function () {
   Orm.instance.sync({force: true}).then(() => {
@@ -37,7 +40,36 @@ module.exports = function () {
         }
       });
     })
-    );
+    ).then(City.findOrCreate({defaults: {name: "Torres"}, where: {name: "Torres"}}).spread((instance, created) => {
+      City.Torres = instance;
+
+      Address.findOrCreate({
+        defaults: {
+          district: 'Centro',
+          address: 'Rua Leonardo Truda',
+          number: '333',
+          complement: '',
+          cityId: instance.id
+        },
+        where: {
+          address: 'Rua Leonardo Truda'
+        }
+      }).spread((instanceA, created) => {
+
+          Customer.findOrCreate({
+            defaults: {
+              name: 'Cliente Teste',
+              Address: [
+                instanceA
+              ]
+            },
+            where: {
+              name: 'Cliente Teste'
+            }
+          });
+        });
+    })
+    );;
   });
 };
 
