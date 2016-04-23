@@ -3,6 +3,7 @@ const Role = require('./models/Role');
 const User = require('./models/User');
 const Category = require('./models/Category');
 const Product = require('./models/Product');
+const StockEntry = require('./models/StockEntry');
 const Customer = require('./models/Customer');
 const Address = require('./models/Address');
 const City = require('./models/City');
@@ -25,37 +26,39 @@ module.exports = function () {
       });
     }).then(() => Role.findOrCreate({defaults: {name: "User"}, where: {name: "User"}}).spread(User => {
       Role.User = User;
-    })).then(Category.findOrCreate({defaults: {name: "Principal"}, where: {name: "Principal"}}).spread((instance, created) => {
-      Category.Principal = instance;
+    })).then(Category.findOrCreate({
+        defaults: {name: "Principal"},
+        where: {name: "Principal"}
+      }).spread((instance, created) => {
+        Category.Principal = instance;
 
-      Product.findOrCreate({
-        defaults: {
-          name: 'Pastel de Carne',
-          value: 12.90,
-          img: 'http://orsimages.unileversolutions.com/ORS_Images/Knorr_pt-BR/knorr_pastel_de_carne_580x326_35_1.1.35_326X580.Jpeg',
-          categoryId: instance.id
-        },
-        where: {
-          name: 'Pastel de Carne'
-        }
-      });
-    })
+        Product.findOrCreate({
+          defaults: {
+            name: 'Pastel de Carne',
+            value: 12.90,
+            img: 'http://orsimages.unileversolutions.com/ORS_Images/Knorr_pt-BR/knorr_pastel_de_carne_580x326_35_1.1.35_326X580.Jpeg',
+            categoryId: instance.id
+          },
+          where: {
+            name: 'Pastel de Carne'
+          }
+        });
+      })
     ).then(City.findOrCreate({defaults: {name: "Torres"}, where: {name: "Torres"}}).spread((instance, created) => {
-      City.Torres = instance;
+        City.Torres = instance;
 
-      Address.findOrCreate({
-        defaults: {
-          district: 'Centro',
-          address: 'Rua Leonardo Truda',
-          number: '333',
-          complement: '',
-          cityId: instance.id
-        },
-        where: {
-          address: 'Rua Leonardo Truda'
-        }
-      }).spread((instanceA, created) => {
-
+        Address.findOrCreate({
+          defaults: {
+            district: 'Centro',
+            address: 'Rua Leonardo Truda',
+            number: '333',
+            complement: '',
+            cityId: instance.id
+          },
+          where: {
+            address: 'Rua Leonardo Truda'
+          }
+        }).spread((instanceA, created) => {
           Customer.findOrCreate({
             defaults: {
               name: 'Cliente Teste',
@@ -66,10 +69,10 @@ module.exports = function () {
             where: {
               name: 'Cliente Teste'
             }
-          });
+          }).spread(customer => customer.addAddress(instanceA));
         });
-    })
-    );;
+      })
+    );
   });
 };
 

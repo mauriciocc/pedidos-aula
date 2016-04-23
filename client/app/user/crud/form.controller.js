@@ -1,9 +1,9 @@
 /*@ngInject*/
 class UserFormController {
 
-  constructor(UserService, $mdToast, $mdDialog, $stateParams) {
+  constructor(UserService, Toast, $mdDialog, $stateParams) {
     this.UserService = UserService;
-    this.$mdToast = $mdToast;
+    this.Toast = Toast;
     this.$mdDialog = $mdDialog;
     this.$stateParams = $stateParams;
     if ($stateParams.id) {
@@ -19,20 +19,10 @@ class UserFormController {
 
   save() {
     this.UserService.save(this.user).then(() => {
-      this.$mdToast.show(
-        this.$mdToast
-          .simple().textContent('Usuário salvo com sucesso!')
-          .position('top right')
-          .theme("success-toast")
-      );
+      this.Toast.success('Usuário salvo com sucesso!');
       this.refresh();
     }, () => {
-      this.$mdToast.show(
-        this.$mdToast
-          .simple().textContent('Ocorreu um erro ao tentar salvar o usuário!' + arguments)
-          .position('top right')
-          .theme("danger-toast")
-      );
+      this.Toast.danger('Ocorreu um erro ao tentar salvar o usuário!' + arguments);
     });
   }
 

@@ -4,13 +4,14 @@ import "angular-material-data-table/dist/md-data-table.min.css";
 import "font-awesome/scss/font-awesome.scss";
 import "material-design-lite/material.min.js";
 import "material-design-lite/material.min.css";
-  
+
 import angular from "angular";
 import angularCookies from "angular-cookies";
 import uiRouter from "angular-ui-router";
 import ngMaterial from "angular-material";
 import ngDataTable from "angular-material-data-table";
 import AppComponent from "./app.component";
+import AppComponentSet from "./components/components.module";
 import user from "./user/user";
 import category from "./category/category";
 import product from "./product/product";
@@ -23,6 +24,7 @@ angular.module('app', [
     ngMaterial,
     ngDataTable,
     angularCookies,
+    AppComponentSet.name,
     navbar.name,
     home.name,
     user.name,

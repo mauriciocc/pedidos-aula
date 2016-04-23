@@ -14,6 +14,6 @@ const Customer = orm.define('customer', {
     underscored: true
 });
 
-Customer.belongsToMany(Address, {through: 'CustomerAddress'});
+Customer.belongsToMany(Address, {through: 'customer_has_address', as: 'addresses'});
 
 module.exports = Customer;

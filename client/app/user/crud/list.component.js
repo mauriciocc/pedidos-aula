@@ -5,9 +5,10 @@ import "./list.scss";
 /*@ngInject*/
 class controller {
 
-  constructor(UserService, $mdToast, $state) {
+  constructor(UserService, $state, Toast) {
+    console.log(Toast);
     this.UserService = UserService;
-    this.$mdToast = $mdToast;
+    this.Toast = Toast;
     this.$state = $state;
     this.refresh();
   }
