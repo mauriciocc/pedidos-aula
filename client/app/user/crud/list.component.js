@@ -6,7 +6,6 @@ import "./list.scss";
 class controller {
 
   constructor(UserService, $state, Toast) {
-    console.log(Toast);
     this.UserService = UserService;
     this.Toast = Toast;
     this.$state = $state;

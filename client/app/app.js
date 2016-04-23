@@ -1,9 +1,11 @@
 import "normalize.css/normalize.css";
 import "angular-material/angular-material.scss";
 import "angular-material-data-table/dist/md-data-table.min.css";
-import "font-awesome/scss/font-awesome.scss";
 import "material-design-lite/material.min.js";
 import "material-design-lite/material.min.css";
+
+import "font-awesome/scss/font-awesome.scss";
+
 
 import angular from "angular";
 import angularCookies from "angular-cookies";
@@ -18,6 +20,7 @@ import product from "./product/product";
 import navbar from "./navbar/navbar";
 import home from "./home/home";
 import auth from "./auth/auth";
+import stock from "./stock/stock";
 
 angular.module('app', [
     uiRouter,
@@ -30,7 +33,8 @@ angular.module('app', [
     user.name,
     category.name,
     product.name,
-    auth.name
+    auth.name,
+    stock.name
   ])
   .config(($locationProvider) => {
     "ngInject";
