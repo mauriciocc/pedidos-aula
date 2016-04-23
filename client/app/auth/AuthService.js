@@ -9,12 +9,18 @@ class AuthService {
     this.$cookies = $cookies;
     var credentials = $cookies.getObject(CREDENTIALS);
     if (credentials) {
-      this.authenticate(credentials)
+      this.authRequest = this.authenticate(credentials);
     }
   }
 
   isAuthenticated() {
-    return this.authenticated;
+    return new Promise((resolve) => {
+      if(this.authRequest) {
+        this.authRequest.then(() => resolve(this.authenticated));
+      } else {
+        resolve(this.authenticated);
+      }
+    });
   }
 
   authenticate(credentials) {

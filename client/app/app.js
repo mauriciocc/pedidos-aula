@@ -3,10 +3,7 @@ import "angular-material/angular-material.scss";
 import "angular-material-data-table/dist/md-data-table.min.css";
 import "material-design-lite/material.min.js";
 import "material-design-lite/material.min.css";
-
 import "font-awesome/scss/font-awesome.scss";
-
-
 import angular from "angular";
 import angularCookies from "angular-cookies";
 import uiRouter from "angular-ui-router";
@@ -56,9 +53,26 @@ angular.module('app', [
   .run(function ($rootScope, $state, AuthService) {
     "ngInject";
     $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
-      if (!AuthService.isAuthenticated() && toState.name !== 'login') {
-        $state.transitionTo("login");
-        event.preventDefault();
+
+      var loginPageRequest = toState.name === 'login';
+      if ($rootScope.stateChangeBypass || loginPageRequest) {
+        $rootScope.stateChangeBypass = false;
+        if (loginPageRequest) {
+          $state.go('home');
+        }
+        return;
       }
+
+      event.preventDefault();
+
+      AuthService.isAuthenticated().then(authenticated => {
+        $rootScope.stateChangeBypass = authenticated;
+        if (authenticated) {
+          $state.go(toState, toParams);
+        } else {
+          $state.go('login');
+        }
+      });
+
     });
   });
