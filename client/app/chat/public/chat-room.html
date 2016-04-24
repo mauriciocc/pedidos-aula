@@ -1,0 +1,14 @@
+<div layout="column" ng-cloak class="md-inline-form">
+  <h1>Chat</h1>
+
+  <ul>
+    <li ng-repeat="message in $ctrl.getMessages() track by $index">
+      [{{message.date | date:'dd-MM-yyyy HH:mm:ss'}}] {{message.user.name}}: {{message.message}}
+    </li>
+  </ul>
+
+  <input type="text" ng-model="$ctrl.message"></input>
+  <button type="button" ng-click="$ctrl.sendMessage()">
+    Enviar
+  </button>
+</div>

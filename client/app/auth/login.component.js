@@ -6,7 +6,6 @@ import "./login.scss";
 class controller {
 
   constructor(AuthService, Toast, $state) {
-    console.log(Toast);
     this.AuthService = AuthService;
     this.$state = $state;
     this.Toast = Toast;

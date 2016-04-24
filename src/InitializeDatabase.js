@@ -32,7 +32,7 @@ module.exports = function () {
     "CREATE TRIGGER triggerAuditingStock_entries BEFORE DELETE OR UPDATE ON stock_entries FOR EACH ROW EXECUTE PROCEDURE auditing();"+
     "CREATE TRIGGER triggerAuditingUsers BEFORE DELETE OR UPDATE ON users FOR EACH ROW EXECUTE PROCEDURE auditing();";
     Orm.instance.query(triggersAuditing);
-    
+
     Role.findOrCreate({defaults: {name: "Admin"}, where: {name: "Admin"}}).spread((instance, created) => {
       Role.Admin = instance;
 
@@ -45,6 +45,17 @@ module.exports = function () {
         },
         where: {
           email: 'admin@gmail.com'
+        }
+      });
+      User.findOrCreate({
+        defaults: {
+          name: 'Novo Adm',
+          email: 'admin2@gmail.com',
+          password: 'admin',
+          roleId: instance.id
+        },
+        where: {
+          email: 'admin2@gmail.com'
         }
       });
     }).then(() => Role.findOrCreate({defaults: {name: "User"}, where: {name: "User"}}).spread(User => {
@@ -92,7 +103,7 @@ module.exports = function () {
             where: {
               name: 'Cliente Teste'
             }
-          }).spread(customer => customer.addAddress(instanceceA));
+          }).spread(customer => customer.addAddress(instanceA));
         });
       })
     );

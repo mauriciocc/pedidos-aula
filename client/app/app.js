@@ -21,6 +21,7 @@ import stock from "./stock/stock";
 import city from "./city/city";
 import address from "./address/address";
 import customer from "./customer/customer";
+import chat from "./chat/chat";
 
 angular.module('app', [
     uiRouter,
@@ -37,7 +38,8 @@ angular.module('app', [
     stock.name,
     city.name,
     address.name,
-    customer.name
+    customer.name,
+    chat.name
   ])
   .config(($locationProvider) => {
     "ngInject";
