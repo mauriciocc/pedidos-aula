@@ -7,6 +7,7 @@ const StockEntry = require('./models/StockEntry');
 const Customer = require('./models/Customer');
 const Address = require('./models/Address');
 const City = require('./models/City');
+const Auditing = require('./models/Auditing');
 
 module.exports = function () {
   Orm.instance.sync({force: true}).then(() => {
