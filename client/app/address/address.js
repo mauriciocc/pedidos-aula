@@ -1,31 +1,31 @@
 import angular from "angular";
-import ProductService from "./service/ProductService.js";
-import CategoryService from "../category/service/CategoryService.js";
+import AddressService from "./service/AddressService.js";
+import CityService from "../city/service/CityService.js";
 import uiRouter from "angular-ui-router";
-import productList from "./crud/list.component";
-import productForm from "./crud/form.component.js";
+import addressList from "./crud/list.component";
+import addressForm from "./crud/form.component.js";
 
-let productModule = angular.module('product', [uiRouter])
+let addressModule = angular.module('address', [uiRouter])
   .config(function ($stateProvider) {
     "ngInject";
     $stateProvider
-      .state('products', {
-        url: '/products',
-        template: '<product-list></product-list>'
+      .state('addresss', {
+        url: '/addresss',
+        template: '<address-list></address-list>'
       })
-      .state('products-form-new', {
-        url: '/products/form',
-        template: '<product-form></product-form>'
+      .state('addresss-form-new', {
+        url: '/addresss/form',
+        template: '<address-form></address-form>'
       })
-      .state('products-form-edit', {
-        url: '/products/form/:id',
-        template: '<product-form></product-form>'
+      .state('addresss-form-edit', {
+        url: '/addresss/form/:id',
+        template: '<address-form></address-form>'
       });
   })
-  .service('ProductService', ProductService)
-  .service('CategoryService', CategoryService)
-  .component('productList', productList)
-  .component('productForm', productForm);
+  .service('AddressService', AddressService)
+  .service('CityService', CityService)
+  .component('addressList', addressList)
+  .component('addressForm', addressForm);
 
 
-export default productModule;
+export default addressModule;

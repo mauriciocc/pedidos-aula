@@ -6,5 +6,6 @@ require('./UserCtrl')(router, Auth);
 require('./CategoryCtrl')(router, Auth);
 require('./CityCtrl')(router, Auth);
 require('./ProductCtrl')(router, Auth);
+require('./AddressCtrl')(router, Auth);
 
 module.exports = router;

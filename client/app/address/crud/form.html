@@ -2,31 +2,43 @@
 
   <md-content layout-padding>
     <div>
-      <form name="productForm">
+      <form name="addressForm">
         <div layout="row">
           <md-input-container class="md-block" flex>
             <label>ID</label>
-            <input type="text" ng-model="$ctrl.product.id" readonly>
+            <input type="text" ng-model="$ctrl.address.id" readonly>
           </md-input-container>
         </div>
         <div layout="row">
           <md-input-container class="md-block" flex>
-            <label>Nome</label>
-            <input type="text" ng-model="$ctrl.product.name" required>
+            <label>Bairro</label>
+            <input type="text" ng-model="$ctrl.address.district" required>
           </md-input-container>
         </div>
         <div layout="row">
           <md-input-container class="md-block" flex>
-            <label>Preço</label>
-            <input type="number" ng-model="$ctrl.product.value" required>
+            <label>Endereço</label>
+            <input type="text" ng-model="$ctrl.address.address" required>
+          </md-input-container>
+        </div>
+        <div layout="row">
+          <md-input-container class="md-block" flex>
+            <label>Número</label>
+            <input type="text" ng-model="$ctrl.address.number" required>
+          </md-input-container>
+        </div>
+        <div layout="row">
+          <md-input-container class="md-block" flex>
+            <label>Complemento</label>
+            <input type="text" ng-model="$ctrl.address.complement" required>
           </md-input-container>
         </div>
         <div layout="row">
         <md-input-container class="md-block" flex>
-          <label>Categoria</label>
-          <md-select ng-model="$ctrl.product.categoryId">
-            <md-option ng-repeat="category in $ctrl.categorys" value="{{category.id}}">
-              {{category.name}}
+          <label>Cidade</label>
+          <md-select ng-model="$ctrl.address.cityId">
+            <md-option ng-repeat="city in $ctrl.citys" value="{{city.id}}">
+              {{city.name}}
             </md-option>
           </md-select>
         </md-input-container>

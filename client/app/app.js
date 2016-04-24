@@ -19,6 +19,7 @@ import home from "./home/home";
 import auth from "./auth/auth";
 import stock from "./stock/stock";
 import city from "./city/city";
+import address from "./address/address";
 
 angular.module('app', [
     uiRouter,
@@ -33,7 +34,8 @@ angular.module('app', [
     product.name,
     auth.name,
     stock.name,
-    city.name
+    city.name,
+    address.name
   ])
   .config(($locationProvider) => {
     "ngInject";

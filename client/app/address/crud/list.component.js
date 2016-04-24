@@ -5,27 +5,27 @@ import "./list.scss";
 /*@ngInject*/
 class controller {
 
-  constructor(ProductService, $mdToast, $state) {
-    this.ProductService = ProductService;
+  constructor(AddressService, $mdToast, $state) {
+    this.AddressService = AddressService;
     this.$mdToast = $mdToast;
     this.$state = $state;
     this.refresh();
   }
 
   refresh() {
-    this.ProductService.findAll().then((products) => this.products = products);
+    this.AddressService.findAll().then((addresss) => this.addresss = addresss);
   }
 
   remove(id) {
-    this.ProductService.remove(id).then(() => this.refresh());
+    this.AddressService.remove(id).then(() => this.refresh());
   }
 
-  newProduct() {
-    this.$state.go('products-form-new');
+  newAddress() {
+    this.$state.go('addresss-form-new');
   }
 
   edit(id) {
-    this.$state.go('products-form-edit', {id: id});
+    this.$state.go('addresss-form-edit', {id: id});
   }
 
 }

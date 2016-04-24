@@ -1,38 +1,38 @@
 /*@ngInject*/
-class ProductFormController {
+class AddressFormController {
 
-  constructor(ProductService, CategoryService, $mdToast, $mdDialog, $state, $stateParams) {
-    this.ProductService = ProductService;
-    this.CategoryService = CategoryService;
+  constructor(AddressService, CityService, $mdToast, $mdDialog, $state, $stateParams) {
+    this.AddressService = AddressService;
+    this.CityService = CityService;
     this.$mdToast = $mdToast;
     this.$mdDialog = $mdDialog;
     this.$stateParams = $stateParams;
     this.$state = $state;
-    this.loadCategorys();
+    this.loadCitys();
     if ($stateParams.id) {
-      ProductService.findOne($stateParams.id).then((product) => this.product = product);
+      AddressService.findOne($stateParams.id).then((address) => this.address = address);
     } else {
-      this.product = {};
+      this.address = {};
     }
   }
 
-  loadCategorys() {
-    this.CategoryService.findAll().then((categorys) => this.categorys = categorys);
+  loadCitys() {
+    this.CityService.findAll().then((citys) => this.citys = citys);
   }
 
   save() {
-    this.ProductService.save(this.product).then(() => {
+    this.AddressService.save(this.address).then(() => {
       this.$mdToast.show(
         this.$mdToast
-          .simple().textContent('Produto salvo com sucesso!')
+          .simple().textContent('Endereço salvo com sucesso!')
           .position('top right')
           .theme("success-toast")
       );
-      this.$state.go('products');
+      this.$state.go('addresss');
     }, () => {
       this.$mdToast.show(
         this.$mdToast
-          .simple().textContent('Ocorreu um erro ao tentar salvar o produto!' + arguments)
+          .simple().textContent('Ocorreu um erro ao tentar salvar o endereço!' + arguments)
           .position('top right')
           .theme("danger-toast")
       );
@@ -41,4 +41,4 @@ class ProductFormController {
 
 }
 
-export default ProductFormController;
+export default AddressFormController;
