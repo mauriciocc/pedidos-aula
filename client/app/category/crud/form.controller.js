@@ -1,10 +1,11 @@
 /*@ngInject*/
 class CategoryFormController {
 
-  constructor(CategoryService, $mdToast, $mdDialog, $stateParams) {
+  constructor(CategoryService, $mdToast, $mdDialog, $state, $stateParams) {
     this.CategoryService = CategoryService;
     this.$mdToast = $mdToast;
     this.$mdDialog = $mdDialog;
+    this.$state = $state;
     this.$stateParams = $stateParams;
     if ($stateParams.id) {
       CategoryService.findOne($stateParams.id).then((category) => this.category = category);
@@ -25,7 +26,7 @@ class CategoryFormController {
           .position('top right')
           .theme("success-toast")
       );
-      this.refresh();
+      this.$state.go('categorys');
     }, () => {
       this.$mdToast.show(
         this.$mdToast

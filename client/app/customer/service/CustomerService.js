@@ -1,24 +1,24 @@
 /*@ngInject*/
-let ProductFactory = function ($http) {
+let CustomerFactory = function ($http) {
 
   this.findAll = () => {
-    return $http.get('/api/products').then(response => response.data);
+    return $http.get('/api/customers').then(response => response.data);
   };
 
   this.findOne = (id) => {
-    return $http.get('/api/products/' + id).then(response => response.data);
+    return $http.get('/api/customers/' + id).then(response => response.data);
   };
 
-  this.save = (product) => {
-    return product.id
-      ? $http.put('/api/products/' + product.id, product)
-      : $http.post('/api/products', product);
+  this.save = (customer) => {
+    return customer.id
+      ? $http.put('/api/customers/' + customer.id, customer)
+      : $http.post('/api/customers', customer);
   };
 
-  this.remove = (productId) => {
-    return $http.delete('/api/products/' + productId);
+  this.remove = (customerId) => {
+    return $http.delete('/api/customers/' + customerId);
   };
 
 };
 
-export default ProductFactory;
+export default CustomerFactory;

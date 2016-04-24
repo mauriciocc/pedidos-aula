@@ -1,10 +1,11 @@
 /*@ngInject*/
 class CityFormController {
 
-  constructor(CityService, $mdToast, $mdDialog, $stateParams) {
+  constructor(CityService, $mdToast, $mdDialog, $state, $stateParams) {
     this.CityService = CityService;
     this.$mdToast = $mdToast;
     this.$mdDialog = $mdDialog;
+    this.$state = $state;
     this.$stateParams = $stateParams;
     if ($stateParams.id) {
       CityService.findOne($stateParams.id).then((city) => this.city = city);
@@ -25,7 +26,7 @@ class CityFormController {
           .position('top right')
           .theme("success-toast")
       );
-      this.refresh();
+      this.$state.go('citys');
     }, () => {
       this.$mdToast.show(
         this.$mdToast
