@@ -1,21 +1,21 @@
 var passport = require('passport');
-var BasicStrategy = require('passport-http').BasicStrategy;
 var User = rootRequire('src/models/User');
+var JwtStrategy = require('passport-jwt').Strategy;
+var ExtractJwt = require('passport-jwt').ExtractJwt;
+var config = rootRequire("config/config");
 
-passport.use(new BasicStrategy(
-  function (userid, password, done) {
-    User.findOne({where: {email: userid}}).then(user => {
-      if (!user) {
-        return done(null, false);
-      }
-      if (user.password !== password) {
-        return done(null, false);
-      }
-      return done(null, user);
-    }, (err) => {
-      return done(err);
-    });
-  }
-));
+var opts = {};
+opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
+opts.secretOrKey = config.app.secret;
+passport.use(new JwtStrategy(opts, function (jwt_payload, done) {
+  console.log(jwt_payload);
+  User.findOne({id: jwt_payload.id}).then(user => {
+    if (user) {
+      done(null, user);
+    } else {
+      done(null, false);
+    }
+  });
+}));
 
-module.exports = passport.authenticate('basic', {session: false});
+module.exports = passport.authenticate('jwt', {session: false});

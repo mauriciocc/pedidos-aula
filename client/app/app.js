@@ -57,7 +57,7 @@ angular.module('app', [
       var loginPageRequest = toState.name === 'login';
       if ($rootScope.stateChangeBypass || loginPageRequest) {
         $rootScope.stateChangeBypass = false;
-        if (loginPageRequest) {
+        if (loginPageRequest && $rootScope.authenticated) {
           $state.go('home');
         }
         return;
@@ -67,6 +67,7 @@ angular.module('app', [
 
       AuthService.isAuthenticated().then(authenticated => {
         $rootScope.stateChangeBypass = authenticated;
+        $rootScope.authenticated = authenticated;
         if (authenticated) {
           $state.go(toState, toParams);
         } else {

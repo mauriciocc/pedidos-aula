@@ -15,7 +15,7 @@ class AuthService {
 
   isAuthenticated() {
     return new Promise((resolve) => {
-      if(this.authRequest) {
+      if (this.authRequest) {
         this.authRequest.then(() => resolve(this.authenticated));
       } else {
         resolve(this.authenticated);
@@ -24,25 +24,20 @@ class AuthService {
   }
 
   authenticate(credentials) {
-    this.basicAuth = this.generateBasic(credentials);
-    return this.$http.get('/api/sign-in', {
-      headers: {'Authorization': 'Basic ' + this.basicAuth}
-    }).then((response) => {
-      this.authenticated = true;
-      this.user = response.data;
-      if (credentials.rememberMe) {
-        this.$cookies.putObject(CREDENTIALS, credentials);
-      }
-      this.$http.defaults.headers.common.Authorization = 'Basic ' + this.basicAuth;
-    }, (err) => this.authenticated = false);
-  }
-
-  generateBasic(credentials) {
-    return btoa(credentials.email + ":" + credentials.password);
-  }
-
-  getBasicAuth() {
-    return this.basicAuth;
+    var request = this.$http.post('/api/sign-in', credentials)
+    request
+      .then((response) => {
+        this.authenticated = response.data.success;
+        if (this.authenticated) {
+          this.user = response.data.user;
+          if (credentials.rememberMe) {
+            this.$cookies.putObject(CREDENTIALS, credentials);
+          }
+          this.$http.defaults.headers.common.Authorization = response.data.token;
+        }
+        return response.data;
+      }, (err) => this.authenticated = false);
+    return request;
   }
 
   getUser() {

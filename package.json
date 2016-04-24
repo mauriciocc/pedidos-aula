@@ -16,6 +16,7 @@
     "angular-material-data-table": "^0.10.3",
     "angular-messages": "^1.5.0",
     "angular-ui-router": "^0.2.15",
+    "bluebird": "latest",
     "body-parser": "~1.15.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.1",
@@ -31,13 +32,14 @@
     "normalize.css": "^4.0.0",
     "passport": "^0.3.2",
     "passport-http": "^0.3.0",
+    "passport-jwt": "^2.0.0",
     "pg": "^4.5.1",
     "pg-hstore": "^2.3.2",
     "sequelize": "^3.19.3",
     "serve-favicon": "~2.3.0",
     "url-loader": "^0.5.7",
     "validator": "^5.1.0",
-    "bluebird": "latest"
+    "jsonwebtoken": "latest"
   },
   "devDependencies": {
     "angular-mocks": "^1.5.0",
