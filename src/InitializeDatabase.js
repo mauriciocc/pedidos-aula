@@ -50,10 +50,10 @@ module.exports = function () {
     }).then(() => Role.findOrCreate({defaults: {name: "User"}, where: {name: "User"}}).spread(User => {
       Role.User = User;
     })).then(Category.findOrCreate({
-        defaults: {name: "Principal"},
-        where: {name: "Principal"}
+        defaults: {name: "Pasteis"},
+        where: {name: "Pasteis"}
       }).spread((instance, created) => {
-        Category.Principal = instance;
+        Category.Pasteis = instance;
 
         Product.findOrCreate({
           defaults: {
@@ -67,7 +67,7 @@ module.exports = function () {
           }
         });
       })
-    ).then(City.findOrCreate({defaults: {name: "Torres"}, where: {name: "Torres"}}).spread((instance, created) => {
+    ).then(City.findOrCreate({defaults: {name: "Torres", state: "RS"}, where: {name: "Torres"}}).spread((instance, created) => {
         City.Torres = instance;
 
         Address.findOrCreate({
@@ -92,7 +92,7 @@ module.exports = function () {
             where: {
               name: 'Cliente Teste'
             }
-          }).spread(customer => customer.addAddress(instanceA));
+          }).spread(customer => customer.addAddress(instanceceA));
         });
       })
     );

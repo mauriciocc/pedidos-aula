@@ -18,6 +18,7 @@ import navbar from "./navbar/navbar";
 import home from "./home/home";
 import auth from "./auth/auth";
 import stock from "./stock/stock";
+import city from "./city/city";
 
 angular.module('app', [
     uiRouter,
@@ -31,7 +32,8 @@ angular.module('app', [
     category.name,
     product.name,
     auth.name,
-    stock.name
+    stock.name,
+    city.name
   ])
   .config(($locationProvider) => {
     "ngInject";

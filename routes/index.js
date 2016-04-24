@@ -4,6 +4,7 @@ var router = express.Router();
 require('./SignInCtrl')(router, Auth);
 require('./UserCtrl')(router, Auth);
 require('./CategoryCtrl')(router, Auth);
+require('./CityCtrl')(router, Auth);
 require('./ProductCtrl')(router, Auth);
 
 module.exports = router;

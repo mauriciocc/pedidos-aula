@@ -7,7 +7,18 @@ const City = orm.define('city', {
     primaryKey: true
   },
   name: {
-    type: orm.seq.STRING
+    type: orm.seq.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
+  state: {
+    type: orm.seq.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   }
 }, {
   underscored: true
