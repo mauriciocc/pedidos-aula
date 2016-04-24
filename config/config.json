@@ -1,4 +1,7 @@
 {
+  "app": {
+    "secret": "RXrAItE51aUGY64lucc70CnZmTz1sDklwE3o5mEsCbRpKkCjvLJaq51MWKPF0YTToByiOfO3XB6csVn1mtw9dbrfR0WPzZPcHfuSS2zaEjX2HKWlEg3rTYs9GjFYguy3"
+  },
   "development": {
     "username": "postgres",
     "password": "postgres",
