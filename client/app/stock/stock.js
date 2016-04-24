@@ -2,6 +2,7 @@ import angular from "angular";
 import uiRouter from "angular-ui-router";
 import StockService from "./service/StockService";
 import stockForm from "./crud/stock-form";
+import stockList from "./crud/stock-list";
 
 
 export default angular.module('app.stock.module', [uiRouter])
@@ -10,13 +11,14 @@ export default angular.module('app.stock.module', [uiRouter])
     $stateProvider
       .state('stock', {
         url: '/stock',
-        template: '<stock-form></stock-form>'
+        template: '<stock-list></stock-list>'
       })
-      .state('stock.form', {
-        url: '/form',
+      .state('stock-form', {
+        url: '/stock/form',
         template: '<stock-form></stock-form>'
       });
   })
   .service('StockService', StockService)
   .component('stockForm', stockForm)
+  .component('stockList', stockList)
 ;
