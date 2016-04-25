@@ -1,5 +1,6 @@
 const orm = rootRequire('src/models/Orm.js');
 const Address = require('./Address');
+const City = require('./City');
 
 const Customer = orm.define('customer', {
 	id: {

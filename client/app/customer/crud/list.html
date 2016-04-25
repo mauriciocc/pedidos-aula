@@ -11,6 +11,8 @@
       <tr md-row>
         <th md-column>ID</th>
         <th md-column>Nome</th>
+        <th md-column>Cidade</th>
+        <th md-column>Bairro</th>
         <th md-column>Ações</th>
       </tr>
       </thead>
@@ -18,6 +20,8 @@
       <tr md-row ng-repeat="customer in $ctrl.customers track by customer.id">
         <td md-cell>{{customer.id}}</td>
         <td md-cell>{{customer.name}}</td>
+        <td md-cell>{{customer.addresses[0].city.name}}</td>
+        <td md-cell>{{customer.addresses[0].district}}</td>
         <td md-cell>
           <md-button class="md-icon-button" ng-click="$ctrl.remove(customer.id)">
             <md-icon md-font-icon="fa-times" class="fa md-raised md-warn"></md-icon>

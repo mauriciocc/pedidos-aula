@@ -17,7 +17,6 @@ class CustomerFormController {
     this.$mdDialog = $mdDialog;
     this.$stateParams = $stateParams;
     this.$state = $state;
-    this.loadAddresss();
     this.loadCitys();
     this.addressEntry = new AddressEntry();
     if ($stateParams.id) {
@@ -27,16 +26,12 @@ class CustomerFormController {
     }
   }
 
-  loadAddresss() {
-    this.AddressService.findAll().then((addresss) => this.addresss = addresss);
-  }
-
   loadCitys() {
-    this.CityService.findAll().then((city) => this.city = city);
+    this.CityService.findAll().then((citys) => this.citys = citys);
   }
 
   addAddressItem() {
-    this.addressEntry.items.push(this.addressItem);
+    this.customer.addresses.push(this.addressItem);
     this.addressItem = null;
   }
 
@@ -45,6 +40,7 @@ class CustomerFormController {
   }
 
   save() {
+    //this.customer.addAddress(this.addressEntry.items);
     this.CustomerService.save(this.customer).then(() => {
       this.$mdToast.show(
         this.$mdToast
