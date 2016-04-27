@@ -8,7 +8,6 @@ var opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
 opts.secretOrKey = config.app.secret;
 passport.use(new JwtStrategy(opts, function (jwt_payload, done) {
-  console.log(jwt_payload);
   User.findOne({id: jwt_payload.id}).then(user => {
     if (user) {
       done(null, user);

@@ -4,5 +4,5 @@ var Customer = rootRequire('src/models/Customer');
 var CrudFactory = require('./CrudFactory');
 
 module.exports = function (router, Auth) {
-  return CrudFactory(router, Auth, '/api/customers', Customer, { include: [{ all: true }]});
+  return CrudFactory(router, Auth, '/api/customers', Customer, { include: [{ all: true, nested: true }]});
 };
