@@ -20,7 +20,11 @@ const Address = orm.define('address', {
     type: orm.seq.STRING
   }
 }, {
-  underscored: true
+  underscored: true,
+  name: {
+    singular: 'address',
+    plural: 'addresses'
+  }
 });
 
 Address.belongsTo(City, {as: 'city'});

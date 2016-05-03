@@ -21,7 +21,11 @@ const City = orm.define('city', {
     }
   }
 }, {
-  underscored: true
+  underscored: true,
+  name: {
+    singular: 'city',
+    plural: 'cities'
+  }
 });
 
 module.exports = City;

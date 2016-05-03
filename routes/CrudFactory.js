@@ -1,6 +1,10 @@
-module.exports = function (router, Auth, uri, DAO, opts) {
+var Promise = require('bluebird');
+module.exports = function (router, Auth, uri, DAO, opts, updateCallback) {
 
   opts = opts || {};
+  updateCallback = updateCallback || function (entity) {
+      return Promise.resolve(entity)
+    };
 
   router.get(uri, Auth, function (req, res) {
     DAO.findAll(opts).then(function (entities) {
@@ -15,7 +19,7 @@ module.exports = function (router, Auth, uri, DAO, opts) {
   });
 
   router.post(uri, Auth, function (req, res) {
-    DAO.create(req.body).then(function (entity) {
+    DAO.create(req.body, opts).then(function (entity) {
       res.status(200).json(entity);
     }, function (ex) {
       res.status(400).json(ex);
@@ -26,7 +30,9 @@ module.exports = function (router, Auth, uri, DAO, opts) {
     DAO.findById(req.params.id, opts).then(function (entity) {
       if (entity) {
         entity.update(req.body).then(function (entity) {
-          res.status(200).json(entity);
+          updateCallback(entity, req.body).then(updated => {
+            res.status(200).json(updated);
+          });
         }, function (ex) {
           res.status(400).json(ex);
         });
