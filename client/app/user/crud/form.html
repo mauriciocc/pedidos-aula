@@ -23,6 +23,16 @@
         </div>
         <div layout="row">
           <md-input-container class="md-block" flex>
+            <label>Papel</label>
+            <md-select ng-model="$ctrl.user.roleId">
+              <md-option ng-repeat="role in $ctrl.availableRoles track by role.id" value="{{role.id}}">
+                {{role.name}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+        <div layout="row">
+          <md-input-container class="md-block" flex>
             <label>Senha</label>
             <input type="password" ng-model="$ctrl.user.password">
           </md-input-container>

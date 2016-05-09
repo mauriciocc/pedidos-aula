@@ -33,7 +33,7 @@ module.exports = function () {
     "CREATE TRIGGER triggerAuditingUsers BEFORE DELETE OR UPDATE ON users FOR EACH ROW EXECUTE PROCEDURE auditing();";
     Orm.instance.query(triggersAuditing);
 
-    Role.findOrCreate({defaults: {name: "Admin"}, where: {name: "Admin"}}).spread((instance, created) => {
+    Role.findOrCreate({defaults: {name: "Administrador"}, where: {name: "Administrador"}}).spread((instance, created) => {
       Role.Admin = instance;
 
       User.findOrCreate({
@@ -58,7 +58,7 @@ module.exports = function () {
           email: 'admin2@gmail.com'
         }
       });
-    }).then(() => Role.findOrCreate({defaults: {name: "User"}, where: {name: "User"}}).spread(User => {
+    }).then(() => Role.findOrCreate({defaults: {name: "Usuário"}, where: {name: "Usuário"}}).spread(User => {
       Role.User = User;
     })).then(Category.findOrCreate({
         defaults: {name: "Pasteis"},

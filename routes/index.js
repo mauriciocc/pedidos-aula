@@ -8,5 +8,6 @@ require('./CityCtrl')(router, Auth);
 require('./ProductCtrl')(router, Auth);
 require('./AddressCtrl')(router, Auth);
 require('./CustomerCtrl')(router, Auth);
+require('./RoleCtrl')(router, Auth);
 
 module.exports = router;

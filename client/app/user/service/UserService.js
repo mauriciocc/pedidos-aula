@@ -1,6 +1,10 @@
 /*@ngInject*/
 let UserFactory = function ($http) {
 
+  this.findRoles = () => {
+    return $http.get('/api/roles').then(response => response.data);
+  };
+
   this.findAll = () => {
     return $http.get('/api/users').then(response => response.data);
   };

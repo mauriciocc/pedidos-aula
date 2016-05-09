@@ -12,6 +12,7 @@ class UserFormController {
     } else {
       this.user = {};
     }
+    UserService.findRoles().then(roles => this.availableRoles = roles);
   }
 
   refresh() {
