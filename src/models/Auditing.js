@@ -6,17 +6,17 @@ const Auditing = orm.define('auditing', {
     autoIncrement: true,
     primaryKey: true
   },
-  table: {
+  table_name: {
   	type: orm.seq.STRING
   },
-  id_refer: {
+  operation: {
+    type: orm.seq.ENUM('CREATE', 'UPDATE', 'DELETE')
+  },
+  entity_id: {
     type: orm.seq.STRING
   },
-  values: {
+  entity_json: {
     type: orm.seq.JSON
-  },
-  date: {
-    type: orm.seq.DATE
   },
   user_id: {
     type: orm.seq.INTEGER
