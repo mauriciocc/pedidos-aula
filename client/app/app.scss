@@ -30,9 +30,14 @@ md-icon.fa {
 }
 
 #button-add-fixed{
+    display: none;
     position: fixed;
     bottom: 40px;
     right: 20px;
+    
+    @media(max-width: 479px){
+        display: block;
+    }
 }
 
 #button-add-top{
