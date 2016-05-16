@@ -1,23 +1,15 @@
-<div class="template-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+<div ng-if="$ctrl.currentUser()" class="template-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
     <header class="template-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
         <header-component></header-component>
     </header>
     <div class="template-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
         <header class="template-drawer-header">
-            <!--<img src="images/user.jpg" class="template-avatar">-->
+            <img src="https://organicthemes.com/demo/restaurant/wp-content/themes/organic-restaurant/images/logo.png" class="template-avatar">
             <div class="template-avatar-dropdown">
-                <span>hello@example.com</span>
-                <div class="mdl-layout-spacer"></div>
-                <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                    <i class="material-icons" role="presentation">arrow_drop_down</i>
-                    <span class="visuallyhidden">Accounts</span>
-                </button>
-                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-                    <li class="mdl-menu__item">hello@example.com</li>
-                    <li class="mdl-menu__item">info@example.com</li>
-                    <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
-                </ul>
+                <span> Logado como {{$ctrl.currentUser().name}}</span>
             </div>
+            <div class="mdl-layout-spacer"></div>
+
         </header>
         <navbar></navbar>
     </div>
@@ -31,4 +23,12 @@
             </div>
         </div>
     </main>
+</div>
+{{$ctrl.currentUser().name}}
+<div ng-if="!$ctrl.currentUser()" id="login">
+    <div class="wrap-login">
+        <div class="app">
+            <div ui-view></div>
+        </div>
+    </div>
 </div>

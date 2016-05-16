@@ -20,3 +20,26 @@ md-icon.fa {
     font-size: 18px;
     line-height: 20px;
 }
+
+.app {
+    width: 100%;
+}
+
+.template-avatar{
+    width: 100%;
+}
+
+#button-add-fixed{
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+}
+
+#button-add-top{
+    width: 180px;
+    margin-bottom:15px;
+}
+
+.mdl-layout__header .mdl-layout__drawer-button {
+    color: #333333 !important;
+}
