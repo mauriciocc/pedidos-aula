@@ -1,19 +1,19 @@
 md-toast.md-success-toast-theme {
-  .md-toast-content {
-    background-color: green;
-  }
+    .md-toast-content {
+        background-color: green;
+    }
 }
 
 md-toast.md-warn-toast-theme {
-  .md-toast-content {
-    background-color: #baba00;
-  }
+    .md-toast-content {
+        background-color: #baba00;
+    }
 }
 
 md-toast.md-danger-toast-theme {
-  .md-toast-content {
-    background-color: red;
-  }
+    .md-toast-content {
+        background-color: red;
+    }
 }
 
 md-icon.fa {
@@ -29,22 +29,35 @@ md-icon.fa {
     width: 100%;
 }
 
-#button-add-fixed{
-    display: none;
-    position: fixed;
-    bottom: 40px;
-    right: 20px;
-    
-    @media(max-width: 479px){
-        display: block;
-    }
-}
-
-#button-add-top{
-    width: 180px;
-    margin-bottom:15px;
-}
-
 .mdl-layout__header .mdl-layout__drawer-button {
     color: #333333 !important;
+}
+
+.app {
+    #button-add-fixed{
+        display: none;
+        position: fixed;
+        bottom: 40px;
+        right: 20px;
+
+        @media(max-width: 479px){
+            display: block;
+        }
+    }
+
+    #button-add-top{
+        width: 180px;
+        margin-bottom:15px;
+    }
+
+    .mdl-button.mdl-button--colored{
+        background: #FFAB40 !important;
+        
+        i{
+            color: #FFFFFF !important;
+        }
+    }
+}
+main.mdl-color--grey-100{
+    background: #F9F9F9 !important;
 }

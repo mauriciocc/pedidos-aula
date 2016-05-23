@@ -1,4 +1,18 @@
-.template-avatar-dropdown {
-    text-align: center; 
-    padding-bottom: 10px;
+.template-layout .mdl-layout__drawer{
+    background-color: #DDD !important;
+
+    .template-avatar-dropdown {
+        text-align: center; 
+        padding-bottom: 10px;
+        color: #666;
+        font-weight: bold;
+    }
+    navbar nav {
+        background-color: rgba(0,0,0,0.1) !important;
+        
+        a, i {
+            color: #666 !important;
+            font-weight: bold;
+        }
+    }
 }

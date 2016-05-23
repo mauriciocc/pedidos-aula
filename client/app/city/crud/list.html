@@ -1,33 +1,45 @@
 <div layout="column" ng-cloak class="md-inline-form">
+    <div id="button-add-top">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" ng-click="$ctrl.newCity()">
+            Nova Cidade
+            <i class="material-icons">add</i>
+        </button>
+    </div>
+    <div id="button-add-fixed">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" ng-click="$ctrl.newCity()">
+            <i class="material-icons">add</i>
+        </button>
+    </div>
 
-  <md-button class="md-icon-button" ng-click="$ctrl.newCity()">
-    <md-icon md-font-icon="fa-plus" class="fa md-raised"></md-icon>
-  </md-button>
 
-  <!-- exact table from live demo -->
-  <md-table-container>
-    <table md-table>
-      <thead md-head>
-      <tr md-row>
-        <th md-column>ID</th>
-        <th md-column>Nome</th>
-      </tr>
-      </thead>
-      <tbody md-body>
-      <tr md-row ng-repeat="city in $ctrl.citys track by city.id">
-        <td md-cell>{{city.id}}</td>
-        <td md-cell>{{city.name}}</td>
-        <td md-cell>
-          <md-button class="md-icon-button" ng-click="$ctrl.remove(city.id)">
-            <md-icon md-font-icon="fa-times" class="fa md-raised md-warn"></md-icon>
-          </md-button>
-          <md-button class="md-icon-button" ng-click="$ctrl.edit(city.id)">
-            <md-icon md-font-icon="fa-edit" class="fa md-raised"></md-icon>
-          </md-button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </md-table-container>
+    <!-- exact table from live demo -->
+    <md-table-container>
+        <table class="mdl-data-table mdl-shadow--2dp">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th class="mdl-data-table__cell--non-numeric">Nome</th>
+                    <th class="mdl-data-table__cell--non-numeric">Editar</th>
+                    <th class="mdl-data-table__cell--non-numeric">Remover</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="city in $ctrl.citys track by city">
+                    <td>{{city.id}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{city.name}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        <md-button class="md-icon-button" ng-click="$ctrl.edit(city.id)">
+                            <i class="material-icons">mode_edit</i>
+                        </md-button>
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        <md-button class="md-icon-button" ng-click="$ctrl.remove(city.id)">
+                            <i class="material-icons">delete</i>
+                        </md-button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </md-table-container>
 
 </div>
