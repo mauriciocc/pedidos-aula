@@ -1,0 +1,28 @@
+<div layout="column" ng-cloak class="md-inline-form">
+    <!-- exact table from live demo -->
+    <md-table-container>
+        <table class="mdl-data-table mdl-shadow--2dp">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th class="mdl-data-table__cell--non-numeric">Tabela</th>
+                    <th class="mdl-data-table__cell--non-numeric">Operação</th>
+                    <th class="mdl-data-table__cell--non-numeric">Chave Primaria</th>
+                    <th class="mdl-data-table__cell--non-numeric">Dados</th>
+                    <th class="mdl-data-table__cell--non-numeric">Usuário</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="auditing in $ctrl.auditings track by auditing.id"> 
+                    <td>{{auditing.id}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{auditing.table_name}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{auditing.operation}}</td>
+                    <td>{{auditing.entity_id}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{auditing.entity_json}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{auditing.user_id}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+
+</div>

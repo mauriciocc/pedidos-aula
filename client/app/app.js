@@ -21,6 +21,7 @@ import city from "./city/city";
 import address from "./address/address";
 import customer from "./customer/customer";
 import chat from "./chat/chat";
+import auditing from "./auditing/auditing";
 
 angular.module('app', [
     uiRouter,
@@ -38,7 +39,8 @@ angular.module('app', [
     city.name,
     address.name,
     customer.name,
-    chat.name
+    chat.name,
+    auditing.name
   ])
   .config(($locationProvider) => {
     "ngInject";
