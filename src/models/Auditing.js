@@ -1,4 +1,5 @@
 const orm = rootRequire('src/models/Orm.js');
+const User = require('./User');
 
 const Auditing = orm.define('auditing', {
   id: {
@@ -7,7 +8,7 @@ const Auditing = orm.define('auditing', {
     primaryKey: true
   },
   table_name: {
-  	type: orm.seq.STRING
+    type: orm.seq.STRING
   },
   operation: {
     type: orm.seq.ENUM('CREATE', 'UPDATE', 'DELETE')
@@ -17,12 +18,12 @@ const Auditing = orm.define('auditing', {
   },
   entity_json: {
     type: orm.seq.JSON
-  },
-  user_id: {
-    type: orm.seq.INTEGER
   }
 }, {
   underscored: true
 });
+
+
+Auditing.belongsTo(User, {as: 'user'});
 
 module.exports = Auditing;

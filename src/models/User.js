@@ -29,7 +29,11 @@ const User = orm.define('user', {
     }
   }
 }, {
-  underscored: true
+  underscored: true,
+  name: {
+    singular: 'user',
+    plural: 'users'
+  }
 });
 
 User.belongsTo(Role, {as: 'role'});

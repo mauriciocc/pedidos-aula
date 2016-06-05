@@ -18,7 +18,7 @@ module.exports = function () {
       Auditing.create({
         table_name: tableName,
         operation: operation,
-        user_id: opts && opts.user ? opts.user.id : null,
+        userId: opts && opts.user ? opts.user.id : null,
         entity_id: instance.id,
         entity_json: instance
       });
