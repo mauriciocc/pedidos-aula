@@ -35,8 +35,8 @@ class CustomerFormController {
     this.addressItem = null;
   }
 
-  removeAddressItem(item) {
-    _.remove(this.addressEntry.items, item);    
+  removeAddressItem(index) {
+    this.customer.addresses.splice(index, 1);
   }
 
   save() {

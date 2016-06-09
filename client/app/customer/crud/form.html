@@ -70,7 +70,7 @@
                     <td md-cell>{{addressItem.number}}</td>
                     <td md-cell>{{addressItem.complement}}</td>
                     <td md-cell>
-                      <md-button class="md-icon-button" ng-click="$ctrl.removeAddressItem(addressItem)">
+                      <md-button class="md-icon-button" ng-click="$ctrl.removeAddressItem($index)">
                         <md-icon md-font-icon="fa-times" class="fa md-raised md-warn"></md-icon>
                       </md-button>
                     </td>
