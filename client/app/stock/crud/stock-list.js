@@ -5,9 +5,11 @@ import "./stock-list.scss";
 /*@ngInject*/
 class controller {
 
-  constructor($state, Toast) {
+  constructor($state, Toast, StockService) {
     this.Toast = Toast;
     this.$state = $state;
+    this.StockService = StockService;
+    this.StockService.findAll().then(data => this.stockEntries = data);
   }
 
   newStockEntries() {

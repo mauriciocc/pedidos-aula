@@ -64,7 +64,13 @@ gulp.task('webpack', (cb) => {
 gulp.task('serve', () => {
 
   nodemon({
-    script: 'bin/www'
+    script: 'bin/www',
+    ignore: [
+      'client/',
+      'node_modules/',
+      'dist/',
+      'public/'
+    ]
   });
 
   const config = require('./webpack.dev.config');
@@ -79,7 +85,7 @@ gulp.task('serve', () => {
   var compiler = webpack(config);
 
   serve({
-    port: process.env.PORT || 3001,
+    port: process.env.PORT || 3002,
     open: false,
     //server: {baseDir: root},
     proxy: 'localhost:3000',

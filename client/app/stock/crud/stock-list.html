@@ -1,12 +1,7 @@
 <div layout="column" ng-cloak class="md-inline-form">
     <div id="button-add-top">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" ng-click="$ctrl.newCity()">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" ng-click="$ctrl.newStockEntries()">
             Nova entrada
-            <i class="material-icons">add</i>
-        </button>
-    </div>
-    <div id="button-add-fixed">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" ng-click="$ctrl.newCity()">
             <i class="material-icons">add</i>
         </button>
     </div>
@@ -16,31 +11,25 @@
         <table class="mdl-data-table mdl-shadow--2dp">
             <thead>
                 <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Data de Entrada</th>
                     <th class="mdl-data-table__cell--non-numeric">Item</th>
                     <th class="mdl-data-table__cell--non-numeric">Quantidade</th>
                     <th class="mdl-data-table__cell--non-numeric">Valor Unitario</th>
-                    <th class="mdl-data-table__cell--non-numeric">Editar</th>
-                    <th class="mdl-data-table__cell--non-numeric">Remover</th>
+                    <th class="mdl-data-table__cell--non-numeric">Ações</th>
                 </tr>
             </thead>
             <tbody>
-     <!-- 
-                <tr ng-repeat="stockItem in $ctrl.stockEntry.items track by stockItem">
-                    <td class="mdl-data-table__cell--non-numeric">{{stockItem.item}}</td>
+                <tr ng-repeat="stockItem in $ctrl.stockEntries track by stockItem.id">
+                    <td class="mdl-data-table__cell--non-numeric">{{stockItem.date | Date}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{stockItem.product.name}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{stockItem.quantity}}</td>
-                    <td class="mdl-data-table__cell--non-numeric">{{stockItem.unitValue}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{stockItem.value | currency}}</td>
                     <td class="mdl-data-table__cell--non-numeric">
-                        <md-button class="md-icon-button" ng-click="$ctrl.edit(stockItem.id)">
-                            <i class="material-icons">mode_edit</i>
-                        </md-button>
-                    </td>
-                    <td class="mdl-data-table__cell--non-numeric">
-                        <md-button class="md-icon-button" ng-click="$ctrl.remove(stockItem.id)">
+                        <md-button class="md-icon-button" ng-click="$ctrl.remove(stockItem.id)" title="Remover">
                             <i class="material-icons">delete</i>
                         </md-button>
                     </td>
                 </tr>
-     -->
             </tbody>
         </table>
   </md-table-container>

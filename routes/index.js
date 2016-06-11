@@ -10,5 +10,6 @@ require('./AddressCtrl')(router, Auth);
 require('./CustomerCtrl')(router, Auth);
 require('./AuditingCtrl')(router, Auth);
 require('./RoleCtrl')(router, Auth);
+require('./StockEntryCtrl')(router, Auth);
 
 module.exports = router;

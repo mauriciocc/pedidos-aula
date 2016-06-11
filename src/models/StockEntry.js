@@ -12,7 +12,6 @@ const StockEntry = orm.define('stock_entry', {
     allowNull: false,
     validate: {
       notEmpty: true,
-      isEmail: true
     }
   },
   quantity: {

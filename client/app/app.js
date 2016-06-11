@@ -4,6 +4,7 @@ import "angular-material-data-table/dist/md-data-table.min.css";
 import "material-design-lite/material.min.js";
 import "material-design-lite/material.min.css";
 import angular from "angular";
+import 'angular-i18n/angular-locale_pt-br.js'
 import angularCookies from "angular-cookies";
 import uiRouter from "angular-ui-router";
 import ngMaterial from "angular-material";
@@ -85,4 +86,20 @@ angular.module('app', [
       });
 
     });
+  })
+  .filter('Date',
+    function($filter) {
+      "ngInject";
+    var angularDateFilter = $filter('date');
+    return function(theDate) {
+      return angularDateFilter(theDate, 'dd-MM-yyyy');
+    }
+  })
+  .filter('DateTime',
+    function($filter) {
+      "ngInject";
+    var angularDateFilter = $filter('date');
+    return function(theDate) {
+      return angularDateFilter(theDate, 'dd-MM-yyyy HH:mm:ss');
+    }
   });

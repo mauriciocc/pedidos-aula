@@ -11,10 +11,6 @@
             </legend>
 
             <div layout="row">
-              <md-input-container class="md-block" flex>
-                <label>Fornecedor</label>
-                <input type="text" ng-model="$ctrl.stockEntry.supplier">
-              </md-input-container>
                 <md-datepicker ng-model="$ctrl.stockEntry.date" md-placeholder="Data de entrada" />
             </div>
 
@@ -28,53 +24,63 @@
             </legend>
 
             <div layout="row">
-              <md-input-container class="md-block" flex>
-                <label>Item</label>
-                <input type="text" ng-model="$ctrl.stockItem.item" required>
-              </md-input-container>
-              <md-input-container class="md-block" flex>
-                <label>Quantidade</label>
-                <input type="number" ng-model="$ctrl.stockItem.quantity" required>
-              </md-input-container>
-              <md-input-container class="md-block" flex>
-                <label>Valor Unitario</label>
-                <input type="number" ng-model="$ctrl.stockItem.unitValue" required>
-              </md-input-container>
+              <div layout="column" flex="4">
+                <md-input-container class="md-block" flex>
+                  <label>Item</label>
+                  <md-select ng-model="$ctrl.stockItem.product" ng-change="$ctrl.productChanged($ctrl.stockItem.product)">
+                    <md-option ng-repeat="product in $ctrl.products track by product.id" ng-value="product">
+                      {{product.name}}
+                    </md-option>
+                  </md-select>
+                </md-input-container>
+                <md-input-container class="md-block" flex>
+                  <label>Quantidade</label>
+                  <input type="number" ng-model="$ctrl.stockItem.quantity" required>
+                </md-input-container>
+                <md-input-container class="md-block" flex>
+                  <label>Valor Unitario</label>
+                  <input type="number" ng-model="$ctrl.stockItem.value" required>
+                </md-input-container>
+                <div layout="row" layout-align="end start">
+                  <md-button class="md-raised md-primary" ng-click="$ctrl.addStockItem()">Adicionar</md-button>
+                </div>
+              </div>
+              <div layout="column" flex="8">
+                <!-- exact table from live demo -->
+                <md-table-container>
+                  <table md-table>
+                    <thead md-head>
+                    <tr md-row>
+                      <th md-column>#</th>
+                      <th md-column>Item</th>
+                      <th md-column>Quantidade</th>
+                      <th md-column>Valor Unitario</th>
+                      <th md-column>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody md-body>
+                    <tr md-row ng-repeat="stockItem in $ctrl.stockEntry.items track by $index">
+                      <td md-cell>{{$index+1}}</td>
+                      <td md-cell>{{stockItem.product.name}}</td>
+                      <td md-cell>{{stockItem.quantity}}</td>
+                      <td md-cell>{{stockItem.value}}</td>
+                      <td md-cell>
+                        <md-button class="md-icon-button md-" ng-click="$ctrl.stockEntry.items.splice($index, 1)">
+                          <md-icon>remove</md-icon>
+                        </md-button>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </md-table-container>
+              </div>
+
 
             </div>
-            <div layout="row" layout-align="end start">
-              <md-button class="md-raised md-primary" ng-click="$ctrl.addStockItem()">Adicionar</md-button>
-            </div>
 
-            <hr/>
 
-            <!-- exact table from live demo -->
-            <md-table-container>
-              <table md-table>
-                <thead md-head>
-                <tr md-row>
-                  <th md-column>#</th>
-                  <th md-column>Item</th>
-                  <th md-column>Quantidade</th>
-                  <th md-column>Valor Unitario</th>
-                  <th md-column>Ações</th>
-                </tr>
-                </thead>
-                <tbody md-body>
-                <tr md-row ng-repeat="stockItem in $ctrl.stockEntry.items track by $index">
-                  <td md-cell>{{$index+1}}</td>
-                  <td md-cell>{{stockItem.item}}</td>
-                  <td md-cell>{{stockItem.quantity}}</td>
-                  <td md-cell>{{stockItem.unitValue}}</td>
-                  <td md-cell>
-                    <md-button class="md-icon-button" ng-click="$ctrl.removeStockItem(stockItem)">
-                      <md-icon md-font-icon="fa-times" class="fa md-raised md-warn"></md-icon>
-                    </md-button>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-            </md-table-container>
+
+
 
           </fieldset>
 

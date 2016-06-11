@@ -1,12 +1,18 @@
 /*@ngInject*/
 let ProductFactory = function ($http) {
 
+  var castValues = p => {
+    p.value = Number(p.value);
+    return p;
+  };
+
   this.findAll = () => {
-    return $http.get('/api/products').then(response => response.data);
+
+    return $http.get('/api/products').then(response => response.data.map(castValues));
   };
 
   this.findOne = (id) => {
-    return $http.get('/api/products/' + id).then(response => response.data);
+    return $http.get('/api/products/' + id).then(response => castValues(response.data));
   };
 
   this.save = (product) => {
