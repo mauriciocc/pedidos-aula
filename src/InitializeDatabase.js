@@ -11,7 +11,7 @@ const Auditing = require('./models/Auditing');
 const Sale = require('./models/Sale');
 
 module.exports = function () {
-  Orm.instance.sync({force: true}).then(() => {
+  Orm.instance.sync(/*{force: true}*/).then(() => {
 
     var registerAudit = function (operation, instance, opts) {
       var tableName = instance.Model.getTableName();

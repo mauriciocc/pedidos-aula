@@ -55,7 +55,6 @@ class controller {
       this.Toast.success('Objeto salvo com sucesso!');
       this.$state.go('sales');
     }).catch(e => {
-      console.error(e);
       var message = 'Erro ao salvar objeto: \n';
       if (_.isObject(e)) {
         e.data.errors.forEach(error => {

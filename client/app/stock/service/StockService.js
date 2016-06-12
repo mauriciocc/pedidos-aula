@@ -1,4 +1,5 @@
 import BaseService from '../../BaseService';
+import moment from "moment";
 
 const baseUri = '/api/stock-entries';
 
@@ -12,7 +13,7 @@ export default class StockService extends BaseService {
 
   static castValues(stockEntry) {
     stockEntry.value = Number(stockEntry.value);
-    stockEntry.date = new Date(stockEntry.date);
+    stockEntry.date = moment(stockEntry.date, 'YYYY-MM-DD').toDate();
     return stockEntry;
   };
 

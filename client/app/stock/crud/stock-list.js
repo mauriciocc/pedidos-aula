@@ -9,7 +9,7 @@ class controller extends BaseList {
   constructor($state, Toast, StockService) {
     super(StockService, Toast, $state, {newEntity: 'stock-form'});
   }
-
+  
 }
 
 

@@ -11,7 +11,8 @@
         <table class="mdl-data-table mdl-shadow--2dp">
             <thead>
                 <tr>
-                    <th class="mdl-data-table__cell--non-numeric">Data de Entrada</th>
+                    <th class="mdl-data-table__cell--non-numeric">Data</th>
+                    <th class="mdl-data-table__cell--non-numeric">Tipo</th>
                     <th class="mdl-data-table__cell--non-numeric">Item</th>
                     <th class="mdl-data-table__cell--non-numeric">Quantidade</th>
                     <th class="mdl-data-table__cell--non-numeric">Valor Unitario</th>
@@ -19,13 +20,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="stockItem in $ctrl.entities track by stockItem.id">
+                <tr ng-repeat="stockItem in $ctrl.entities track by stockItem.id ">
                     <td class="mdl-data-table__cell--non-numeric">{{stockItem.date | Date}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{stockItem.type === 'IN' ? 'Entrada' : 'Saida'}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{stockItem.product.name}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{stockItem.quantity}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{stockItem.value | currency}}</td>
                     <td class="mdl-data-table__cell--non-numeric">
-                        <md-button class="md-icon-button" ng-click="$ctrl.remove(stockItem)" title="Remover">
+                        <md-button class="md-icon-button" ng-click="$ctrl.remove(stockItem)" title="Remover" ng-if="stockItem.type === 'IN'">
                             <i class="material-icons">delete</i>
                         </md-button>
                     </td>

@@ -5,6 +5,7 @@ const _ = require("lodash");
 const errors = require("sequelize/lib/errors");
 const Queue = require('promise-queue');
 const Promise = require('bluebird');
+var moment = require("moment");
 
 Queue.configure(Promise);
 
@@ -34,22 +35,26 @@ Sale.addHook('beforeCreate', 'checkItemAvailability', (sale, options) => {
         .filter((value, index, self) => self.indexOf(value) === index);
 
       return orm.instance.query(query, {
-        replacements: {products: itemIds, inDate: sale.date},
+        replacements: {products: itemIds, inDate: sale.date.substring(0, 10)},
         type: orm.seq.QueryTypes.SELECT
       }).then(result => {
         var procErrors = [];
+
         sale.items.forEach(item => {
           var stock = _.find(result, {productId: item.productId});
           if (!stock) {
-            procErrors.push({productId: stock.productId, total: item.quantity});
+            procErrors.push({productId: item.productId, total: item.quantity});
+          } else {
+            stock.total -= item.quantity;
           }
-          stock.total -= item.quantity;
         });
+
         result.forEach(stock => {
           if (stock.total < 0) {
             procErrors.push({productId: stock.productId, total: stock.total});
           }
         });
+
         if (procErrors.length > 0) {
           throw new errors.ValidationError('No Stock Available of products', procErrors);
         }
@@ -61,12 +66,16 @@ Sale.addHook('beforeCreate', 'checkItemAvailability', (sale, options) => {
   });
 });
 
+Sale.addHook('afterDestroy', 'removeOrphanStockEntries', (sale, options) => {
+  return orm.instance.query(`delete from stock_entries where type = 'OUT' and id not in (select distinct "stockEntryId" from sale_has_stock_entry)`);
+});
+
 module.exports = Sale;
 
 
 const query = `SELECT
   e."productId",
-  sum(quantity) - (SELECT sum(quantity)
+  sum(quantity) - (SELECT case when sum(quantity) is null then 0 else sum(quantity) end
                    FROM stock_entries
                    WHERE "productId" = e."productId" AND type = 'OUT' AND "date" <= :inDate) AS total
 FROM stock_entries e
