@@ -25,7 +25,7 @@
       <tr ng-repeat-start='entity in $ctrl.entities track by entity.id'>
         <td rowspan="{{entity.items.length}}">{{entity.id}}</td>
         <td rowspan="{{entity.items.length}}">{{entity.customer.name}}</td>
-        <td rowspan="{{entity.items.length}}">{{entity.date | DateTime}}</td>
+        <td rowspan="{{entity.items.length}}">{{entity.date | Date}}</td>
         <td>{{entity.items[0].product.name}}</td>
         <td>{{entity.items[0].quantity}}</td>
         <td>{{entity.items[0].value | currency}}</td>
@@ -35,7 +35,7 @@
           </md-button>
         </td>
       </tr>
-      <tr ng-repeat-end ng-repeat='item in entity.items track by item.id' ng-hide="$first">
+      <tr ng-repeat-end ng-repeat='item in entity.items.slice(1) track by item.id'>
         <td>{{item.product.name}}</td>
         <td>{{item.quantity}}</td>
         <td>{{item.value | currency}}</td>

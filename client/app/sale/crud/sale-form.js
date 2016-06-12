@@ -1,6 +1,5 @@
 import template from "./sale-form.html";
 import _ from "lodash";
-import Promise from "bluebird";
 
 class Sale {
 
@@ -33,18 +32,18 @@ class controller {
   }
 
   save() {
-    if(!this.sale.customer) {
-      Toast.warning('Selecione um cliente...');
+    if (!this.sale.customer) {
+      this.Toast.warning('Selecione um cliente...');
       return;
     }
 
-    if(this.sale.items.length === 0) {
-      Toast.warning('Adicione pelo menos um item ao pedido...');
+    if (this.sale.items.length === 0) {
+      this.Toast.warning('Adicione pelo menos um item ao pedido...');
       return;
     }
 
     var sale = _.cloneDeep(this.sale);
-    sale.customerId = sale.customer.id ;
+    sale.customerId = sale.customer.id;
     sale.customer = null;
     sale.items = sale.items.map(i => {
       i.date = sale.date;
@@ -56,7 +55,18 @@ class controller {
       this.Toast.success('Objeto salvo com sucesso!');
       this.$state.go('sales');
     }).catch(e => {
-      this.Toast.danger('Erro ao salvar objeto: '+ e);
+      console.error(e);
+      var message = 'Erro ao salvar objeto: \n';
+      if (_.isObject(e)) {
+        e.data.errors.forEach(error => {
+          var product = _.find(this.products, {id: error.productId});
+          message += 'Faltam ' +Math.abs(error.total) + ' itens do produto '+product.name +' para atender o pedido.';
+        });
+
+      } else {
+        message += e;
+      }
+      this.Toast.danger(message);
     });
 
   }
