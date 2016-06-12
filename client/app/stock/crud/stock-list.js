@@ -16,6 +16,10 @@ class controller {
     this.$state.go('stock-form');
   }
 
+  remove(stockItem) {
+    this.StockService.remove(stockItem.id).then(() => _.remove(this.stockEntries, {id: stockItem.id}));
+  }
+
 }
 
 

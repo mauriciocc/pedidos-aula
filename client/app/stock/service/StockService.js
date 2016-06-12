@@ -31,5 +31,5 @@ export default class StockService {
   remove(entityId) {
     return this.$http.delete(baseUri+'/'+ entityId);
   };
-}
+};
 

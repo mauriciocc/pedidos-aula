@@ -16,6 +16,7 @@ import webpachHotMiddelware from 'webpack-hot-middleware';
 import colorsSupported      from 'supports-color';
 import historyApiFallback   from 'connect-history-api-fallback';
 import nodemon from 'gulp-nodemon';
+import compression from 'compression';
 
 let root = 'client';
 
@@ -88,8 +89,12 @@ gulp.task('serve', () => {
     port: process.env.PORT || 3002,
     open: false,
     //server: {baseDir: root},
-    proxy: 'localhost:3000',
+    proxy: {
+      target: 'localhost:3000',
+      middleware: [compression()]
+    },
     middleware: [
+      compression(),
       historyApiFallback(),
       webpackDevMiddelware(compiler, {
         stats: {

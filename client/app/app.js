@@ -4,7 +4,7 @@ import "angular-material-data-table/dist/md-data-table.min.css";
 import "material-design-lite/material.min.js";
 import "material-design-lite/material.min.css";
 import angular from "angular";
-import 'angular-i18n/angular-locale_pt-br.js'
+import "angular-i18n/angular-locale_pt-br.js";
 import angularCookies from "angular-cookies";
 import uiRouter from "angular-ui-router";
 import ngMaterial from "angular-material";
@@ -23,26 +23,27 @@ import address from "./address/address";
 import customer from "./customer/customer";
 import chat from "./chat/chat";
 import auditing from "./auditing/auditing";
+import moment from "moment";
 
 angular.module('app', [
-    uiRouter,
-    ngMaterial,
-    ngDataTable,
-    angularCookies,
-    AppComponentSet.name,
-    navbar.name,
-    home.name,
-    user.name,
-    category.name,
-    product.name,
-    auth.name,
-    stock.name,
-    city.name,
-    address.name,
-    customer.name,
-    chat.name,
-    auditing.name
-  ])
+  uiRouter,
+  ngMaterial,
+  ngDataTable,
+  angularCookies,
+  AppComponentSet.name,
+  navbar.name,
+  home.name,
+  user.name,
+  category.name,
+  product.name,
+  auth.name,
+  stock.name,
+  city.name,
+  address.name,
+  customer.name,
+  chat.name,
+  auditing.name
+])
   .config(($locationProvider) => {
     "ngInject";
     // @see: https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions
@@ -87,19 +88,25 @@ angular.module('app', [
 
     });
   })
-  .filter('Date',
-    function($filter) {
-      "ngInject";
-    var angularDateFilter = $filter('date');
-    return function(theDate) {
-      return angularDateFilter(theDate, 'dd-MM-yyyy');
-    }
+  .config(function($mdDateLocaleProvider) {
+    "ngInject";
+    $mdDateLocaleProvider.formatDate = function(date) {
+      return moment(date).format('DD-MM-YYYY');
+    };
   })
-  .filter('DateTime',
-    function($filter) {
+  .filter('Date',
+    function ($filter) {
       "ngInject";
-    var angularDateFilter = $filter('date');
-    return function(theDate) {
-      return angularDateFilter(theDate, 'dd-MM-yyyy HH:mm:ss');
-    }
-  });
+      var angularDateFilter = $filter('date');
+      return function (theDate) {
+        return angularDateFilter(theDate, 'dd-MM-yyyy');
+      }
+    })
+  .filter('DateTime',
+    function ($filter) {
+      "ngInject";
+      var angularDateFilter = $filter('date');
+      return function (theDate) {
+        return angularDateFilter(theDate, 'dd-MM-yyyy HH:mm:ss');
+      }
+    });

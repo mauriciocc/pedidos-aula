@@ -1,6 +1,7 @@
 import template from "./stock-form.html";
 import "./stock-form.scss";
 import _ from "lodash";
+import Promise from "bluebird";
 
 class StockEntry {
 
@@ -26,14 +27,17 @@ class controller {
   }
 
   save() {
-    var items = _.clone(this.stockEntry.items);
-    Promise.all(items.map(i => {
+    var items = _.clone(this.stockEntry.items).map(i => {
       i.date = this.stockEntry.date;
       i.type = this.stockEntry.type;
       i.productId = i.product.id;
       i.product = null;
       return this.StockService.save(i);
-    })).then(() => this.$state.go('stock'));
+    });
+
+    Promise.all(items).then(() => {
+      this.$state.go('stock');
+    });
 
   }
 

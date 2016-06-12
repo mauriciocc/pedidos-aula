@@ -19,6 +19,7 @@
     "angular-ui-router": "^0.2.15",
     "bluebird": "latest",
     "body-parser": "~1.15.0",
+    "compression": "^1.6.2",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.1",
     "debug": "~2.2.0",
@@ -44,7 +45,8 @@
     "socket.io": "^1.4.5",
     "socket.io-client": "^1.4.5",
     "url-loader": "^0.5.7",
-    "validator": "^5.1.0"
+    "validator": "^5.1.0",
+    "moment": "latest"
   },
   "devDependencies": {
     "angular-mocks": "^1.5.0",
