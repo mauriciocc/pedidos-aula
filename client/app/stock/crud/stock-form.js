@@ -36,6 +36,7 @@ class controller {
     });
 
     Promise.all(items).then(() => {
+      this.Toast.success('Objeto salvo com sucesso!');
       this.$state.go('stock');
     });
 

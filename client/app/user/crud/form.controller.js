@@ -1,10 +1,9 @@
 /*@ngInject*/
 class UserFormController {
 
-  constructor(UserService, Toast, $mdDialog, $stateParams, $state) {
+  constructor(UserService, Toast, $stateParams, $state) {
     this.UserService = UserService;
     this.Toast = Toast;
-    this.$mdDialog = $mdDialog;
     this.$stateParams = $stateParams;
     this.$state = $state;
     if ($stateParams.id) {

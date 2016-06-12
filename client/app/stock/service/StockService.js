@@ -1,35 +1,21 @@
-const baseUri = '/api/stock-entries';
+import BaseService from '../../BaseService';
 
-const castValues = stockEntry => {
-  stockEntry.value = Number(stockEntry.value);
-  stockEntry.date = new Date(stockEntry.date);
-  return stockEntry;
-};
+const baseUri = '/api/stock-entries';
 
 
 /*@ngInject*/
-export default class StockService {
+export default class StockService extends BaseService {
 
   constructor($http) {
-    this.$http = $http;
+    super(baseUri, $http, StockService.castValues);
   }
 
-  findAll() {
-    return this.$http.get(baseUri).then(response => response.data.map(castValues));
+  static castValues(stockEntry) {
+    stockEntry.value = Number(stockEntry.value);
+    stockEntry.date = new Date(stockEntry.date);
+    return stockEntry;
   };
 
-  findOne (id){
-    return this.$http.get(baseUri+'/' + id).then(response => castValues(response.data));
-  };
-
-  save(entity) {
-    return entity.id
-      ? this.$http.put(baseUri+'/' + entity.id, entity)
-      : this.$http.post(baseUri, entity);
-  };
-
-  remove(entityId) {
-    return this.$http.delete(baseUri+'/'+ entityId);
-  };
 };
+
 

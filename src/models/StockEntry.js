@@ -23,7 +23,7 @@ const StockEntry = orm.define('stock_entry', {
     allowNull: false
   },
   date: {
-    type: orm.seq.DATE,
+    type: orm.seq.DATEONLY,
     allowNull: false
   }
 }, {

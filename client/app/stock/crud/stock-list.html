@@ -1,6 +1,6 @@
 <div layout="column" ng-cloak class="md-inline-form">
     <div id="button-add-top">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" ng-click="$ctrl.newStockEntries()">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" ng-click="$ctrl.newEntity()">
             Nova entrada
             <i class="material-icons">add</i>
         </button>
@@ -19,7 +19,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="stockItem in $ctrl.stockEntries track by stockItem.id">
+                <tr ng-repeat="stockItem in $ctrl.entities track by stockItem.id">
                     <td class="mdl-data-table__cell--non-numeric">{{stockItem.date | Date}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{stockItem.product.name}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{stockItem.quantity}}</td>

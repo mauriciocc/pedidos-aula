@@ -18,6 +18,7 @@ import navbar from "./navbar/navbar";
 import home from "./home/home";
 import auth from "./auth/auth";
 import stock from "./stock/stock";
+import sale from "./sale/sale";
 import city from "./city/city";
 import address from "./address/address";
 import customer from "./customer/customer";
@@ -42,7 +43,8 @@ angular.module('app', [
   address.name,
   customer.name,
   chat.name,
-  auditing.name
+  auditing.name,
+  sale.name
 ])
   .config(($locationProvider) => {
     "ngInject";

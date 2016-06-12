@@ -1,0 +1,57 @@
+<div layout="column" ng-cloak class="md-inline-form">
+  <div id="button-add-top">
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+            ng-click="$ctrl.newEntity()">
+      Novo Pedido
+      <i class="material-icons">add</i>
+    </button>
+  </div>
+
+  <!-- exact table from live demo -->
+  <md-table-container>
+    <table class="mdl-data-table mdl-shadow--2dp">
+      <thead>
+      <tr>
+        <th class="mdl-data-table__cell--non-numeric">ID</th>
+        <th class="mdl-data-table__cell--non-numeric">Cliente</th>
+        <th class="mdl-data-table__cell--non-numeric">Data de Saida</th>
+        <th class="mdl-data-table__cell--non-numeric">Item</th>
+        <th class="mdl-data-table__cell--non-numeric">Quantidade</th>
+        <th class="mdl-data-table__cell--non-numeric">Valor Unitario</th>
+        <th class="mdl-data-table__cell--non-numeric">Ações</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat-start='entity in $ctrl.entities track by entity.id'>
+        <td rowspan="{{entity.items.length}}">{{entity.id}}</td>
+        <td rowspan="{{entity.items.length}}">{{entity.customer.name}}</td>
+        <td rowspan="{{entity.items.length}}">{{entity.date | DateTime}}</td>
+        <td>{{entity.items[0].product.name}}</td>
+        <td>{{entity.items[0].quantity}}</td>
+        <td>{{entity.items[0].value | currency}}</td>
+        <td>
+          <md-button class="md-icon-button" ng-click="$ctrl.remove(entity)" title="Remover Pedido">
+            <i class="material-icons">delete</i>
+          </md-button>
+        </td>
+      </tr>
+      <tr ng-repeat-end ng-repeat='item in entity.items track by item.id' ng-hide="$first">
+        <td>{{item.product.name}}</td>
+        <td>{{item.quantity}}</td>
+        <td>{{item.value | currency}}</td>
+        <td>
+
+        </td>
+      </tr>
+
+      <!--      <tr ng-repeat="">
+              <td class="mdl-data-table__cell&#45;&#45;non-numeric"></td>
+              <td class="mdl-data-table__cell&#45;&#45;non-numeric"></td>
+              <td class="mdl-data-table__cell&#45;&#45;non-numeric"></td>
+              <td class="mdl-data-table__cell&#45;&#45;non-numeric"></td>
+
+            </tr>-->
+      </tbody>
+    </table>
+  </md-table-container>
+</div>
