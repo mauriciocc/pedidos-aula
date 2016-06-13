@@ -1,0 +1,32 @@
+.user-list {
+  list-style: none;
+  padding-left: 5px;
+}
+
+.user-list .selected {
+  background-color: #efefef;
+}
+
+.user-list .new-messages {
+  background-color: #ffc2cc;
+}
+
+.alert-container {
+  float: right;
+}
+
+.alert-container md-icon {
+  color: red;
+}
+
+.messages-alert {
+  background-color: red;
+  border-radius: 100%;
+  width: 18px;
+  display: inline-block;
+  height: 18px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  line-height: 18px;
+}

@@ -93,6 +93,7 @@ gulp.task('serve', () => {
       target: 'localhost:3000',
       middleware: [compression()]
     },
+    ghostMode: false,
     middleware: [
       compression(),
       historyApiFallback(),
