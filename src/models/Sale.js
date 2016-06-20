@@ -77,10 +77,10 @@ const query = `SELECT
   e."productId",
   sum(quantity) - (SELECT case when sum(quantity) is null then 0 else sum(quantity) end
                    FROM stock_entries
-                   WHERE "productId" = e."productId" AND type = 'OUT' AND "date" <= :inDate) AS total
+                   WHERE "productId" = e."productId" AND type = 'OUT' AND "date"::date <= :inDate) AS total
 FROM stock_entries e
 WHERE
   "productId" IN (:products)
   AND e.type = 'IN'
-  AND e.date <= :inDate
+  AND e.date::date <= :inDate
 GROUP BY 1`;
