@@ -45,6 +45,7 @@ class controller {
     var sale = _.cloneDeep(this.sale);
     sale.customerId = sale.customer.id;
     sale.customer = null;
+    sale.paid = 'N';
     sale.items = sale.items.map(i => {
       i.date = sale.date;
       i.productId = i.product.id;

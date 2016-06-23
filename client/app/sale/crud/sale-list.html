@@ -30,8 +30,11 @@
         <td>{{entity.items[0].quantity}}</td>
         <td>{{entity.items[0].value | currency}}</td>
         <td>
-          <md-button class="md-icon-button" ng-click="$ctrl.remove(entity)" title="Remover Pedido">
+          <md-button class="md-icon-button" ng-click="showConfirm($event, entity)" title="Remover Pedido">
             <i class="material-icons">delete</i>
+          </md-button>
+          <md-button class="md-icon-button" ng-click="showPrompt($event)" title="Pagar">
+            <i class="material-icons">payment</i>
           </md-button>
         </td>
       </tr>

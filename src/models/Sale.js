@@ -20,6 +20,10 @@ const Sale = orm.define('sale', {
   date: {
     type: orm.seq.DATEONLY,
     allowNull: false
+  },
+  paid: {
+    type: orm.seq.ENUM('Y', 'N'),
+    allowNull: true
   }
 }, {
   underscored: true
