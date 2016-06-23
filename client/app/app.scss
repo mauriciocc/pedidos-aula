@@ -52,7 +52,7 @@ md-icon.fa {
 
     .mdl-button.mdl-button--colored{
         background: #FFAB40 !important;
-        
+
         i{
             color: #FFFFFF !important;
         }
@@ -60,4 +60,15 @@ md-icon.fa {
 }
 main.mdl-color--grey-100{
     background: #F9F9F9 !important;
+}
+
+.app .mdl-button.mdl-button--colored.mdl-button--delete{
+    background: rgb(244, 67, 54) !important;
+}
+
+.submit-button {
+    padding-top: 30px;
+    button {
+        float: right;
+    }
 }
