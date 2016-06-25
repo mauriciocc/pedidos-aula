@@ -22,7 +22,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr ng-repeat-start='entity in $ctrl.entities track by entity.id'>
+      <tr ng-repeat-start='entity in $ctrl.entities track by entity.id' ng-class="{red: '{{entity.paid}}' == 'N', green: '{{entity.paid}}' != 'N'}">
         <td rowspan="{{entity.items.length}}">{{entity.id}}</td>
         <td rowspan="{{entity.items.length}}">{{entity.customer.name}}</td>
         <td rowspan="{{entity.items.length}}">{{entity.date | Date}}</td>
@@ -33,12 +33,12 @@
           <md-button class="md-icon-button" ng-click="showConfirm($event, entity)" title="Remover Pedido">
             <i class="material-icons">delete</i>
           </md-button>
-          <md-button class="md-icon-button" ng-click="showPrompt($event)" title="Pagar">
+          <md-button class="md-icon-button" ng-click="showPrompt($event, entity)" title="Pagar">
             <i class="material-icons">payment</i>
           </md-button>
         </td>
       </tr>
-      <tr ng-repeat-end ng-repeat='item in entity.items.slice(1) track by item.id'>
+      <tr ng-repeat-end ng-repeat='item in entity.items.slice(1) track by item.id' ng-class="{red: '{{entity.paid}}' == 'N', green: '{{entity.paid}}' != 'N'}">
         <td>{{item.product.name}}</td>
         <td>{{item.quantity}}</td>
         <td>{{item.value | currency}}</td>

@@ -3,7 +3,7 @@
     <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>
     Home
   </a>
-  <a class="mdl-navigation__link" ui-sref="users">
+  <a ng-if="$ctrl.currentUser().roleId == 1" class="mdl-navigation__link" ui-sref="users">
     <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
       people
       </i>
@@ -15,13 +15,13 @@
       </i>
     Clientes
   </a>
-  <a class="mdl-navigation__link" ui-sref="products">
+  <a ng-if="$ctrl.currentUser().roleId == 1" class="mdl-navigation__link" ui-sref="products">
     <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
       restaurant
       </i>
     Produtos
   </a>
-  <a class="mdl-navigation__link" ui-sref="categorys">
+  <a ng-if="$ctrl.currentUser().roleId == 1" class="mdl-navigation__link" ui-sref="categorys">
     <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
       class
       </i>
@@ -39,7 +39,7 @@
     </i>
     Pedidos
   </a>
-  <a class="mdl-navigation__link" ui-sref="citys">
+  <a ng-if="$ctrl.currentUser().roleId == 1" class="mdl-navigation__link" ui-sref="citys">
     <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
       map
       </i>
@@ -51,7 +51,7 @@
     </i>
     Chat
   </a>
-      <a class="mdl-navigation__link" ui-sref="auditings">
+      <a ng-if="$ctrl.currentUser().roleId == 1" class="mdl-navigation__link" ui-sref="auditings">
     <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">
       update
       </i>
