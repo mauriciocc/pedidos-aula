@@ -1,89 +1,95 @@
 <div layout="column" ng-cloak class="md-inline-form">
 
-  <md-content layout-padding>
-    <div>
-      <form name="customerForm">
-        <div layout="row">
-          <md-input-container class="md-block" flex>
-            <label>ID</label>
-            <input type="text" ng-model="$ctrl.customer.id" readonly>
-          </md-input-container>
-        </div>
-        <div layout="row">
-          <md-input-container class="md-block" flex>
-            <label>Nome</label>
-            <input type="text" ng-model="$ctrl.customer.name" required>
-          </md-input-container>
-        </div>
-        <fieldset>
-            <label>
-              Endereços
-            </label>
+    <md-content layout-padding>
+        <div>
+            <form name="customerForm">
+                <div layout="row">
+                    <md-input-container class="md-block" flex>
+                        <label>ID</label>
+                        <input type="text" ng-model="$ctrl.customer.id" readonly>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container class="md-block" flex>
+                        <label>Nome</label>
+                        <input type="text" ng-model="$ctrl.customer.name" required>
+                    </md-input-container>
+                </div>
+                <fieldset>
+                    <label>
+                        Endereços
+                    </label>
 
-              <div layout="row">
-              <md-input-container class="md-block" flex>
-                <label>Cidade</label>
-                <md-select ng-model="$ctrl.addressItem.cityId">
-                  <md-option ng-repeat="city in $ctrl.citys" value="{{city.id}}">
-                    {{city.name}}
-                  </md-option>
-                </md-select>
-              </md-input-container>
-              <md-input-container class="md-block" flex>
-                <label>Bairro</label>
-                <input type="text" ng-model="$ctrl.addressItem.district" required>
-              </md-input-container>
-              <md-input-container class="md-block" flex>
-                <label>Endereço</label>
-                <input type="text" ng-model="$ctrl.addressItem.address" required>
-              </md-input-container>
-              <md-input-container class="md-block" flex>
-                <label>Número</label>
-                <input type="text" ng-model="$ctrl.addressItem.number" required>
-              </md-input-container>
-              <md-input-container class="md-block" flex>
-                <label>Complemento</label>
-                <input type="text" ng-model="$ctrl.addressItem.complement">
-              </md-input-container>
-              <md-button class="md-raised md-primary" ng-click="$ctrl.addAddressItem()">Adicionar</md-button>
-            </div>
-            <div layout="row">
-              <md-table-container>
-                <table md-table>
-                  <thead md-head>
-                  <tr md-row>
-                    <th md-column>#</th>
-                    <th md-column>Cidade</th>
-                    <th md-column>Bairro</th>
-                    <th md-column>Endereço</th>
-                    <th md-column>Número</th>
-                    <th md-column>Complemento</th>
-                    <th md-column>Ações</th>
-                  </tr>
-                  </thead>
-                  <tbody md-body>
-                  <tr md-row ng-repeat="addressItem in $ctrl.customer.addresses track by $index">
-                    <td md-cell>{{$index+1}}</td>
-                    <td md-cell>{{addressItem.city.name}}</td>
-                    <td md-cell>{{addressItem.district}}</td>
-                    <td md-cell>{{addressItem.address}}</td>
-                    <td md-cell>{{addressItem.number}}</td>
-                    <td md-cell>{{addressItem.complement}}</td>
-                    <td md-cell>
-                      <md-button class="md-icon-button" ng-click="$ctrl.removeAddressItem($index)">
-                        <md-icon md-font-icon="fa-times" class="fa md-raised md-warn"></md-icon>
-                      </md-button>
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </md-table-container>
-            </div>
-          </fieldset>
-        <div layout="row">
-          <md-button class="md-raised md-primary" ng-click="$ctrl.save()">Salvar</md-button>
+                    <div layout="row">
+                        <md-input-container class="md-block" flex>
+                            <label>Cidade</label>
+                            <md-select ng-model="$ctrl.addressItem.cityId">
+                                <md-option ng-repeat="city in $ctrl.citys" value="{{city.id}}">
+                                    {{city.name}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex>
+                            <label>Bairro</label>
+                            <input type="text" ng-model="$ctrl.addressItem.district" required>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex>
+                            <label>Endereço</label>
+                            <input type="text" ng-model="$ctrl.addressItem.address" required>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex>
+                            <label>Número</label>
+                            <input type="text" ng-model="$ctrl.addressItem.number" required>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex>
+                            <label>Complemento</label>
+                            <input type="text" ng-model="$ctrl.addressItem.complement">
+                        </md-input-container>
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" ng-click="$ctrl.addAddressItem()">
+                            Novo endereço
+                            <i class="material-icons">add</i>
+                        </button>
+                    </div>
+                    <div layout="row">
+                        <md-table-container>
+                            <table class="mdl-data-table mdl-shadow--2dp">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th class="mdl-data-table__cell--non-numeric">Cidade</th>
+                                        <th class="mdl-data-table__cell--non-numeric">Bairro</th>
+                                        <th class="mdl-data-table__cell--non-numeric">Endereço</th>
+                                        <th>Número</th>
+                                        <th class="mdl-data-table__cell--non-numeric">Complemento</th>
+                                        <th class="mdl-data-table__cell--non-numeric">Remover</th>
+                                    </tr>
+                                </thead>
+                                <tbody md-body>
+                                    <tr md-row ng-repeat="addressItem in $ctrl.customer.addresses track by $index">
+                                        <td>{{$index + 1}}</td>
+                                        <td class="mdl-data-table__cell--non-numeric">{{addressItem.city.name}}</td>
+                                        <td class="mdl-data-table__cell--non-numeric">{{addressItem.district}}</td>
+                                        <td class="mdl-data-table__cell--non-numeric">{{addressItem.address}}</td>
+                                        <td>{{addressItem.number}}</td>
+                                        <td class="mdl-data-table__cell--non-numeric">{{addressItem.complement}}</td>
+                                        <td class="mdl-data-table__cell--non-numeric">
+                                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-button--delete" ng-click="$ctrl.removeAddressItem($index)">
+                                                <i class="material-icons">delete</i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </md-table-container>
+                    </div>
+                </fieldset>
+                <div class="submit-button">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" ng-click="$ctrl.save()">
+                        Salvar
+                        <i class="material-icons">save</i>
+                    </button>
+                </div>
+            </form>
         </div>
-      </form>
-    </div>
-  </md-content>
+    </md-content>
 </div>
