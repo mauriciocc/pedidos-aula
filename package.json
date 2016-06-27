@@ -14,7 +14,7 @@
     "angular-cookies": "^1.5.3",
     "angular-i18n": "^1.5.6",
     "angular-material": "^1.0.6",
-    "angular-material-data-table": "^0.10.3",
+    "angular-material-data-table": "^0.10.9",
     "angular-messages": "^1.5.0",
     "angular-ui-router": "^0.2.15",
     "bluebird": "latest",

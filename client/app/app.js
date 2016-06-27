@@ -43,6 +43,7 @@ angular.module('app', [
   address.name,
   customer.name,
   chat.name,
+  require('angular-material-data-table'),
   auditing.name,
   sale.name
 ])

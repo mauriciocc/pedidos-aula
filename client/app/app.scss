@@ -1,70 +1,83 @@
 md-toast.md-success-toast-theme {
-    .md-toast-content {
-        background-color: green;
-    }
+  .md-toast-content {
+    background-color: green;
+  }
 }
 
 md-toast.md-warn-toast-theme {
-    .md-toast-content {
-        background-color: #baba00;
-    }
+  .md-toast-content {
+    background-color: #baba00;
+  }
 }
 
 md-toast.md-danger-toast-theme {
-    .md-toast-content {
-        background-color: red;
-    }
+  .md-toast-content {
+    background-color: red;
+  }
 }
 
 md-icon.fa {
-    font-size: 18px;
-    line-height: 20px;
+  font-size: 18px;
+  line-height: 20px;
 }
 
 .app {
-    width: 100%;
+  width: 100%;
 }
 
-.template-avatar{
-    width: 100%;
+.template-avatar {
+  width: 100%;
 }
 
 .mdl-layout__header .mdl-layout__drawer-button {
-    color: #333333 !important;
+  color: #333333 !important;
 }
 
 .app {
-    #button-add-fixed{
-        display: none;
-        position: fixed;
-        bottom: 40px;
-        right: 20px;
+  #button-add-fixed {
+    display: none;
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
 
-        @media(max-width: 479px){
-            display: block;
-        }
+    @media(max-width: 479px) {
+      display: block;
     }
+  }
 
-    #button-add-top{
-        width: 180px;
-        margin-bottom:15px;
-    }
+  #button-add-top {
+    width: 180px;
+    margin-bottom: 15px;
+  }
 
-    .mdl-button.mdl-button--colored{
-        background: #FFAB40 !important;
-        
-        i{
-            color: #FFFFFF !important;
-        }
+  .mdl-button.mdl-button--colored {
+    background: #FFAB40 !important;
+
+    i {
+      color: #FFFFFF !important;
     }
+  }
 }
-main.mdl-color--grey-100{
-    background: #F9F9F9 !important;
+
+main.mdl-color--grey-100 {
+  background: #F9F9F9 !important;
 }
 
 .red {
-    background-color: rgba(236, 83, 52, 0.4) !important;
+  background-color: rgba(236, 83, 52, 0.4) !important;
 }
+
 .green {
-    background-color: rgba(35, 192, 113, 0.4) !important;
+  background-color: rgba(35, 192, 113, 0.4) !important;
+}
+
+.mdl-button--delete {
+  background: rgb(244, 67, 54) !important;
+}
+
+.submit-button {
+  padding-top: 30px;
+  button {
+    float: right;
+  }
 }
