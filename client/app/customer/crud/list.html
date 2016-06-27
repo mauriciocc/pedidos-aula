@@ -1,47 +1,54 @@
 <div layout="column" ng-cloak class="md-inline-form">
-    <div id="button-add-top">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" ng-click="$ctrl.newCustomer()">
-            Novo cliente
-            <i class="material-icons">add</i>
-        </button>
-    </div>
-    <div id="button-add-fixed">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" ng-click="$ctrl.newCustomer()">
-            <i class="material-icons">add</i>
-        </button>
-    </div>
+  <div id="button-add-top">
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+            ng-click="$ctrl.newCustomer()">
+      Novo cliente
+      <i class="material-icons">add</i>
+    </button>
+  </div>
+  <div id="button-add-fixed">
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+            ng-click="$ctrl.newCustomer()">
+      <i class="material-icons">add</i>
+    </button>
+  </div>
 
-    <!-- exact table from live demo -->
-    <md-table-container>
-        <table class="mdl-data-table mdl-shadow--2dp">
-            <thead>
-                <tr>
-                    <th class="mdl-data-table__cell--non-numeric">ID</th>
-                    <th class="mdl-data-table__cell--non-numeric">Nome</th>
-                    <th class="mdl-data-table__cell--non-numeric">Cidade</th>
-                    <th class="mdl-data-table__cell--non-numeric">Bairro</th>
-                    <th class="mdl-data-table__cell--non-numeric">Editar</th>
-                    <th class="mdl-data-table__cell--non-numeric">Remover</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="customer in $ctrl.customers track by customer.id">
-                    <td>{{customer.id}}</td>
-                    <td class="mdl-data-table__cell--non-numeric">{{customer.name}}</td>
-                    <td class="mdl-data-table__cell--non-numeric">{{customer.addresses[0].city.name}}</td>
-                    <td class="mdl-data-table__cell--non-numeric">{{customer.addresses[0].district}}</td>               
-                    <td class="mdl-data-table__cell--non-numeric">
-                        <md-button class="md-icon-button" ng-click="$ctrl.edit(customer.id)">
-                            <i class="material-icons">mode_edit</i>
-                        </md-button>
-                    </td>
-                    <td class="mdl-data-table__cell--non-numeric">
-                        <md-button class="md-icon-button" ng-click="$ctrl.remove(customer.id)">
-                            <i class="material-icons">delete</i>
-                        </md-button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </md-table-container>
+  <!-- exact table from live demo -->
+  <md-table-container>
+    <table md-table md-row-select="options.rowSelection" ng-model="selected" md-progress="promise">
+      <thead md-head md-order="query.order" md-on-reorder="logOrder">
+      <tr md-row>
+        <th md-column md-numeric md-order-by="id"><span>ID</span></th>
+        <th md-column md-order-by="name"><span>Nome</th>
+        <th md-column md-order-by="address[0].city.name"><span>Cidade</th>
+        <th md-column md-order-by="address[0].district"><span>Bairro</th>
+        <th md-column><span>Editar</th>
+        <th md-column><span>Remover</th>
+      </tr>
+      </thead>
+      <tbody md-body>
+      <tr md-row md-select="customer" md-on-select="logItem"
+          ng-repeat="customer in $ctrl.customers | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+        <td md-cell>{{customer.id}}</td>
+        <td md-cell>{{customer.name}}</td>
+        <td md-cell>{{customer.addresses[0].city.name}}</td>
+        <td md-cell>{{customer.addresses[0].district}}</td>
+        <td md-cell>
+          <md-button class="md-icon-button" ng-click="$ctrl.edit(customer.id)">
+            <i class="material-icons">mode_edit</i>
+          </md-button>
+        </td>
+        <td md-cell>
+          <md-button class="md-icon-button" ng-click="$ctrl.remove(customer.id)">
+            <i class="material-icons">delete</i>
+          </md-button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </md-table-container>
+
+  <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+                       md-total="{{$ctrl.customers.length}}" md-page-select="options.pageSelect"
+                       md-boundary-links="options.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>
 </div>

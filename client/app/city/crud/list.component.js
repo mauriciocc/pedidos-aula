@@ -9,8 +9,8 @@ class controller {
     this.CityService = CityService;
     this.$mdToast = $mdToast;
     this.$state = $state;
-    this.$scope = $scope;
     this.refresh();
+    this.$scope = $scope;
     this.$scope.limitOptions = [10, 20, 30];
     this.$scope.selected = [];
 
@@ -20,13 +20,13 @@ class controller {
       autoSelect: true,
       decapitate: false,
       largeEditDialog: false,
-      boundaryLinks: false,
+      boundaryLinks: true,
       limitSelect: true,
       pageSelect: true
     };
 
     this.$scope.query = {
-      order: 'id',
+      order: 'name',
       limit: 10,
       page: 1
     };
