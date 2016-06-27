@@ -1,38 +1,51 @@
 <div layout="column" ng-cloak class="md-inline-form">
-    <div id="button-add-top">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" ng-click="$ctrl.newEntity()">
-            Nova entrada
-            <i class="material-icons">add</i>
-        </button>
-    </div>
+  <div id="button-add-top">
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+            ng-click="$ctrl.newEntity()">
+      Nova Entrada
+      <i class="material-icons">add</i>
+    </button>
+  </div>
+  <div id="button-add-fixed">
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+            ng-click="$ctrl.newEntity()">
+      <i class="material-icons">add</i>
+    </button>
+  </div>
 
   <!-- exact table from live demo -->
   <md-table-container>
-        <table class="mdl-data-table mdl-shadow--2dp">
-            <thead>
-                <tr>
-                    <th class="mdl-data-table__cell--non-numeric">Data</th>
-                    <th class="mdl-data-table__cell--non-numeric">Tipo</th>
-                    <th class="mdl-data-table__cell--non-numeric">Item</th>
-                    <th class="mdl-data-table__cell--non-numeric">Quantidade</th>
-                    <th class="mdl-data-table__cell--non-numeric">Valor Unitario</th>
-                    <th class="mdl-data-table__cell--non-numeric">Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="stockItem in $ctrl.entities track by stockItem.id ">
-                    <td class="mdl-data-table__cell--non-numeric">{{stockItem.date | Date}}</td>
-                    <td class="mdl-data-table__cell--non-numeric">{{stockItem.type === 'IN' ? 'Entrada' : 'Saida'}}</td>
-                    <td class="mdl-data-table__cell--non-numeric">{{stockItem.product.name}}</td>
-                    <td class="mdl-data-table__cell--non-numeric">{{stockItem.quantity}}</td>
-                    <td class="mdl-data-table__cell--non-numeric">{{stockItem.value | currency}}</td>
-                    <td class="mdl-data-table__cell--non-numeric">
-                        <md-button class="md-icon-button" ng-click="$ctrl.remove(stockItem)" title="Remover" ng-if="stockItem.type === 'IN'">
-                            <i class="material-icons">delete</i>
-                        </md-button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <table md-table md-row-select="options.rowSelection" ng-model="selected" md-progress="promise">
+      <thead md-head md-order="query.order" md-on-reorder="logOrder">
+      <tr md-row>
+        <th md-column md-date md-order-by="date"><span>Data</span></th>
+        <th md-column md-order-by="type"><span>Tipo</span></th>
+        <th md-column md-order-by="product.name"><span>Produto</span></th>
+        <th md-column md-numeric md-order-by="quantity"><span>Quantidade</span></th>
+        <th md-column md-order-by="value"><span>Valor Unitário (R$)</span></th>
+        <th md-column>Remover</th>
+      </tr>
+      </thead>
+      <tbody md-body>
+      <tr md-row md-select="city" md-on-select="logItem"
+          ng-repeat="stockItem in $ctrl.entities | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+        <td md-cell>{{stockItem.date | Date}}</td>
+        <td md-cell>{{stockItem.type === 'IN' ? 'Entrada' : 'Saida'}}</td>
+        <td md-cell>{{stockItem.product.name}}</td>
+        <td md-cell>{{stockItem.quantity}}</td>
+        <td md-cell>{{stockItem.value | currency}}</td>
+        <td md-cell>
+          <md-button class="md-icon-button" ng-click="$ctrl.remove(stockItem)" title="Remover"
+                     ng-if="stockItem.type === 'IN'">
+            <i class="material-icons">delete</i>
+          </md-button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </md-table-container>
+  <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+                       md-total="{{$ctrl.entities.length}}" md-page-select="options.pageSelect"
+                       md-label="{page: 'Página:', rowsPerPage: 'Itens por página:', of: 'de'}"
+                       md-boundary-links="options.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>
 </div>

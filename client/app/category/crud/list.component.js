@@ -5,11 +5,32 @@ import "./list.scss";
 /*@ngInject*/
 class controller {
 
-  constructor(CategoryService, $mdToast, $state) {
+  constructor(CategoryService, $mdToast, $state, $scope) {
     this.CategoryService = CategoryService;
     this.$mdToast = $mdToast;
     this.$state = $state;
     this.refresh();
+
+    this.$scope = $scope;
+    this.$scope.limitOptions = [10, 20, 30];
+    this.$scope.selected = [];
+
+    this.$scope.options = {
+      rowSelection: false,
+      multiSelect: false,
+      autoSelect: true,
+      decapitate: false,
+      largeEditDialog: false,
+      boundaryLinks: true,
+      limitSelect: true,
+      pageSelect: true
+    };
+
+    this.$scope.query = {
+      order: 'name',
+      limit: 10,
+      page: 1
+    };
   }
 
   refresh() {

@@ -48,5 +48,6 @@
   </md-table-container>
   <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
                        md-total="{{$ctrl.citys.length}}" md-page-select="options.pageSelect"
+                       md-label="{page: 'Página:', rowsPerPage: 'Itens por página:', of: 'de'}"
                        md-boundary-links="options.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>
 </div>
